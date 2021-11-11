@@ -7,10 +7,10 @@ There are currently several different crates:
 - [**Storage Proofs (`storage-proofs`)**](./storage-proofs)
   A library for constructing storage proofs – including non-circuit proofs, corresponding SNARK circuits, and a method of combining them.
 
-- [**Storage Proofs Core (`storage-proofs-core`)**](./storage-proofs/core)
+- [**Storage Proofs Core (`storage-proofs-core`)**](./storage-proofs-core)
   A set of common primitives used throughout the other storage-proofs sub-crates, including crypto, merkle tree, hashing and gadget interfaces.
 
-- [**Storage Proofs PoRep (`storage-proofs-porep`)**](./storage-proofs/porep)
+- [**Storage Proofs PoRep (`storage-proofs-porep`)**](./storage-proofs-porep)
   `storage-proofs-porep` is intended to serve as a reference implementation for _**Proof-of-Replication**_ (**PoRep**), while also performing the heavy lifting for `cess-proofs`.
 
   Primary Components:
@@ -19,7 +19,7 @@ There are currently several different crates:
   - **DrgPoRep** (_Depth Robust Graph_ **_Proof-of-Replication_**)
   - **StackedDrgPoRep**
 
-- [**Storage Proofs PoSt (`storage-proofs-post`)**](./storage-proofs/post)
+- [**Storage Proofs PoSt (`storage-proofs-post`)**](./storage-proofs-post)
   `storage-proofs-post` is intended to serve as a reference implementation for _**Proof-of-Space-time**_ (**PoSt**), for `filecoin-proofs`.
 
   Primary Components:
