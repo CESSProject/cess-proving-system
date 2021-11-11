@@ -5,34 +5,35 @@ The **Filecoin Proving Subsystem** (or FPS) provides the storage proofs required
 There are currently several different crates:
 
 - [**Storage Proofs (`storage-proofs`)**](./storage-proofs)
-    A library for constructing storage proofs – including non-circuit proofs, corresponding SNARK circuits, and a method of combining them.
+  A library for constructing storage proofs – including non-circuit proofs, corresponding SNARK circuits, and a method of combining them.
 
 - [**Storage Proofs Core (`storage-proofs-core`)**](./storage-proofs/core)
-    A set of common primitives used throughout the other storage-proofs sub-crates, including crypto, merkle tree, hashing and gadget interfaces.
+  A set of common primitives used throughout the other storage-proofs sub-crates, including crypto, merkle tree, hashing and gadget interfaces.
 
 - [**Storage Proofs PoRep (`storage-proofs-porep`)**](./storage-proofs/porep)
-    `storage-proofs-porep` is intended to serve as a reference implementation for _**Proof-of-Replication**_ (**PoRep**), while also performing the heavy lifting for `filecoin-proofs`.
+  `storage-proofs-porep` is intended to serve as a reference implementation for _**Proof-of-Replication**_ (**PoRep**), while also performing the heavy lifting for `cess-proofs`.
 
-    Primary Components:
-     -   **PoR** (**_Proof-of-Retrievability_**: Merkle inclusion proof)
-     -   **DrgPoRep** (_Depth Robust Graph_ **_Proof-of-Replication_**)
-     -   **StackedDrgPoRep**
+  Primary Components:
+
+  - **PoR** (**_Proof-of-Retrievability_**: Merkle inclusion proof)
+  - **DrgPoRep** (_Depth Robust Graph_ **_Proof-of-Replication_**)
+  - **StackedDrgPoRep**
 
 - [**Storage Proofs PoSt (`storage-proofs-post`)**](./storage-proofs/post)
-    `storage-proofs-post` is intended to serve as a reference implementation for _**Proof-of-Space-time**_ (**PoSt**), for `filecoin-proofs`.
+  `storage-proofs-post` is intended to serve as a reference implementation for _**Proof-of-Space-time**_ (**PoSt**), for `filecoin-proofs`.
 
-    Primary Components:
-     -   **PoSt** (Proof-of-Spacetime)
+  Primary Components:
 
+  - **PoSt** (Proof-of-Spacetime)
 
-- [**Filecoin Proofs (`filecoin-proofs`)**](./filecoin-proofs)
+- [**CESS Proofs (`cess-proofs`)**](./cess-proofs)
   A wrapper around `storage-proofs`, providing an FFI-exported API callable from C (and in practice called by [lotus](https://github.com/filecoin-project/lotus) via cgo). Filecoin-specific values of setup parameters are included here.
 
 ## Security Audits
 
-The `rust-fil-proofs` proofs code and the [Filecoin Spec](https://bafybeidxw5vxjdwsun2zc2illagf43v6w5r5w63vg455h7vjesbyqssg64.ipfs.dweb.link/algorithms/sdr/) has undergone a [proofs security audit](audits/Sigma-Prime-Protocol-Labs-Filecoin-Proofs-Security-Review-v2.1.pdf) performed by [Sigma Prime](https://sigmaprime.io/) and been deemed free of *critical* or *major* security issues.  In addition to the security review, the document provides the summary of findings, vulnerability classifications, and recommended resolutions.  All known issues have been resolved to date in both the code and the specification.
+The `rust-fil-proofs` proofs code and the [Filecoin Spec](https://bafybeidxw5vxjdwsun2zc2illagf43v6w5r5w63vg455h7vjesbyqssg64.ipfs.dweb.link/algorithms/sdr/) has undergone a [proofs security audit](audits/Sigma-Prime-Protocol-Labs-Filecoin-Proofs-Security-Review-v2.1.pdf) performed by [Sigma Prime](https://sigmaprime.io/) and been deemed free of _critical_ or _major_ security issues. In addition to the security review, the document provides the summary of findings, vulnerability classifications, and recommended resolutions. All known issues have been resolved to date in both the code and the specification.
 
-`rust-fil-proofs` has also undergone a [SNARK proofs security audit performed by Dr. Jean-Philippe Aumasson and Antony Vennard](audits/protocolai-audit-20200728.pdf) and been deemed free of *critical* or *major* security issues.  In addition to the security analysis, the document provides the audit goals, methodology, functionality descriptions and finally observations on what could be improved.  All known issues have been resolved to date.
+`rust-fil-proofs` has also undergone a [SNARK proofs security audit performed by Dr. Jean-Philippe Aumasson and Antony Vennard](audits/protocolai-audit-20200728.pdf) and been deemed free of _critical_ or _major_ security issues. In addition to the security analysis, the document provides the audit goals, methodology, functionality descriptions and finally observations on what could be improved. All known issues have been resolved to date.
 
 ## Design Notes
 
@@ -54,16 +55,15 @@ The instructions below assume you have independently installed `rust-fil-proofs`
 
 **NOTE:** `rust-fil-proofs` can only be built for and run on 64-bit platforms; building will panic if the target architecture is not 64-bits.
 
-Before building you will need OpenCL to be installed. On Ubuntu, this can be achieved with `apt install ocl-icd-opencl-dev`.  Other system dependencies such as 'gcc/clang', 'wall' and 'cmake' are also required.
+Before building you will need OpenCL to be installed. On Ubuntu, this can be achieved with `apt install ocl-icd-opencl-dev`. Other system dependencies such as 'gcc/clang', 'wall' and 'cmake' are also required.
 
 For the `multicore sdr` feature (enabled by default), you will also need to install the `hwloc` library. On Ubuntu, this can be achieved with `apt install hwloc libhwloc-dev`. For other platforms, please see the [hwloc-rs Prerequisites section](https://github.com/daschl/hwloc-rs).
-
 
 ```
 > cargo build --release --all
 ```
 
-The `hwloc` dependency is optional and may be disabled.  Disabling it will not allow the `multicore sdr` feature to be used.  The fallback is single core replication, which is the default unless specified otherwise.
+The `hwloc` dependency is optional and may be disabled. Disabling it will not allow the `multicore sdr` feature to be used. The fallback is single core replication, which is the default unless specified otherwise.
 
 To disable `multicore sdr` so that `hwloc` is not required, you can build proofs like this:
 
@@ -73,14 +73,13 @@ To disable `multicore sdr` so that `hwloc` is not required, you can build proofs
 
 Note that the `multicore-sdr` feature is omitted from the specified feature list, which removes it from being used by default.
 
-There is experimental support for CUDA behind the `cuda` feature (disabled by default). You will need to install `nvcc`.  On Ubuntu, this can be achieved with `apt install nvidia-cuda-toolkit`.  To enable CUDA support, you can build proofs like this:
+There is experimental support for CUDA behind the `cuda` feature (disabled by default). You will need to install `nvcc`. On Ubuntu, this can be achieved with `apt install nvidia-cuda-toolkit`. To enable CUDA support, you can build proofs like this:
 
 ```
 > cargo build --release --all --features cuda
 ```
 
 It now builds it with both, CUDA and OpenCL support, CUDA will then be preferred at runtime, but can be disabled with the `FIL_PROOFS_GPU_FRAMEWORK` environment variable (see more information in the `GPU usage` section below).
-
 
 ## Building for Arm64
 
@@ -103,7 +102,7 @@ $ cargo +nightly build -p filecoin-proofs --release --target aarch64-unknown-lin
 
 ## Benchmarks
 
-The main benchmarking tool is called `benchy`.  `benchy` has several subcommands, including `merkleproofs`, `prodbench`, `winning_post` and `window_post`.  You can run them with various configuration options, but some examples are below:
+The main benchmarking tool is called `benchy`. `benchy` has several subcommands, including `merkleproofs`, `prodbench`, `winning_post` and `window_post`. You can run them with various configuration options, but some examples are below:
 
 ```
 > cargo run --release --bin benchy -- merkleproofs --size 2
@@ -117,21 +116,24 @@ The main benchmarking tool is called `benchy`.  `benchy` has several subcommands
 The Window PoSt bench can be used a number of ways, some of which are detailed here.
 
 First, you can run the benchmark and preserve the working directory like this:
+
 ```
 cargo run --release --bin benchy -- window-post --size 2KiB --cache window-post-2KiB-dir --preserve-cache
 ```
 
 Then if you want to run the benchmark again to test commit-phase2, you can quickly run it like this:
+
 ```
 cargo run --release --bin benchy -- window-post --size 2KiB --skip-precommit-phase1 --skip-precommit-phase2 --skip-commit-phase1 --cache window-post-2KiB-dir
 ```
 
 Alternatively, if you want to test just GPU tree building, you can run it like this:
+
 ```
 cargo run --release --bin benchy -- window-post --size 2KiB --skip-precommit-phase1 --skip-commit-phase1 --skip-commit-phase2 --cache window-post-2KiB-dir
 ```
 
-Note that some combinations of arguments will cause destructive changes to your cached directory.  For larger benchmark sector sizes, it is recommended that once you create an initial cache, that it be saved to an alternate location in the case that it is corrupted by a test run.  For example, the following run sequence will be guaranteed to corrupt your cache:
+Note that some combinations of arguments will cause destructive changes to your cached directory. For larger benchmark sector sizes, it is recommended that once you create an initial cache, that it be saved to an alternate location in the case that it is corrupted by a test run. For example, the following run sequence will be guaranteed to corrupt your cache:
 
 ```
 # Do NOT run this sequence.  For illustrative purposes only:
@@ -141,7 +143,7 @@ cargo run --release --bin benchy -- window-post --size 2KiB --cache window-post-
 cargo run --release --bin benchy -- window-post --size 2KiB --skip-precommit-phase2 --skip-commit-phase1 --skip-commit-phase2 --cache broken-cache-dir
 ```
 
-The reason this fails is because new random piece data is generated (rather than loaded from disk from a previous run) in the first step, and then we attempt to use it in later sealing steps using data from previously preserved run.  This cannot work.
+The reason this fails is because new random piece data is generated (rather than loaded from disk from a previous run) in the first step, and then we attempt to use it in later sealing steps using data from previously preserved run. This cannot work.
 
 There is also a bench called `gpu-cpu-test`:
 
@@ -149,7 +151,7 @@ There is also a bench called `gpu-cpu-test`:
 > cargo run --release --bin gpu-cpu-test
 ```
 
-Some results are displayed at the command line, or alternatively written as JSON files.  Logging can be enabled using the `RUST_LOG=trace` option (see more Logging options in the `Logging` section below).
+Some results are displayed at the command line, or alternatively written as JSON files. Logging can be enabled using the `RUST_LOG=trace` option (see more Logging options in the `Logging` section below).
 
 Note: On macOS you need `gtime` (`brew install gnu-time`), as the built in `time` command is not enough.
 
@@ -183,7 +185,7 @@ For advanced/verbose/debug logging, you can use the code setting
 
 ## Settings
 
-Further down in this README, various settings are described that can be adjusted by the end-user.  These settings are summarized in `rust-fil-proofs.config.toml.sample` and this configuration file can be used directly if copied to `./rust-fil-proofs.config.toml`.  Alternatively, each setting can be set by using environment variables of the form "FIL_PROOFS_<setting name here>", in all caps.  For example, to set `rows_to_discard` to the value 2, you would set `FIL_PROOFS_ROWS_TO_DISCARD=2` in your environment.
+Further down in this README, various settings are described that can be adjusted by the end-user. These settings are summarized in `rust-fil-proofs.config.toml.sample` and this configuration file can be used directly if copied to `./rust-fil-proofs.config.toml`. Alternatively, each setting can be set by using environment variables of the form "FIL*PROOFS*<setting name here>", in all caps. For example, to set `rows_to_discard` to the value 2, you would set `FIL_PROOFS_ROWS_TO_DISCARD=2` in your environment.
 
 Any configuration setting that is not specified has a reasonable default already chosen.
 
@@ -195,7 +197,7 @@ cargo run --bin settings
 
 ## Parameter File Location
 
-Filecoin proof parameter files are expected to be located in `/var/tmp/filecoin-proof-parameters`.  If they are located in an alternate location, you can point the system to that location using an environment variable
+Filecoin proof parameter files are expected to be located in `/var/tmp/filecoin-proof-parameters`. If they are located in an alternate location, you can point the system to that location using an environment variable
 
 ```
 FIL_PROOFS_PARAMETER_CACHE=/path/to/parameters
@@ -221,11 +223,11 @@ One of the most computationally expensive operations during replication (besides
 FIL_PROOFS_SDR_PARENTS_CACHE_SIZE=2048
 ```
 
-This value is defaulted to 2048 nodes, which is the equivalent of 112KiB of resident memory (where each cached node consists of DEGREE (base + exp = 6 + 8) x 4 byte elements = 56 bytes in length).  Given that the cache is now located on disk, it is memory mapped when accessed in window sizes related to this variable.  This default was chosen to minimize memory while still allowing efficient access to the cache.  If you would like to experiment with alternate sizes, you can modify the environment variable
+This value is defaulted to 2048 nodes, which is the equivalent of 112KiB of resident memory (where each cached node consists of DEGREE (base + exp = 6 + 8) x 4 byte elements = 56 bytes in length). Given that the cache is now located on disk, it is memory mapped when accessed in window sizes related to this variable. This default was chosen to minimize memory while still allowing efficient access to the cache. If you would like to experiment with alternate sizes, you can modify the environment variable
 
 Increasing this value will increase the amount of resident RAM used.
 
-Lastly, the parent's cache data is located on disk by default in `/var/tmp/filecoin-parents`.  To modify this location, use the environment variable
+Lastly, the parent's cache data is located on disk by default in `/var/tmp/filecoin-parents`. To modify this location, use the environment variable
 
 ```
 FIL_PROOFS_PARENT_CACHE=/path/to/parent/cache
@@ -233,7 +235,7 @@ FIL_PROOFS_PARENT_CACHE=/path/to/parent/cache
 
 Using the above, the cache data would be located at `/path/to/parent/cache/filecoin-parents`.
 
-Alternatively, use `FIL_PROOFS_CACHE_DIR=/path/to/parent/cache`, in which the parent cache will be located in `$FIL_PROOFS_CACHE_DIR/filecoin-parents`.  Note that if you're using `FIL_PROOFS_CACHE_DIR`, it must be set through the environment and cannot be set using the configuration file.  This setting has no effect if `FIL_PROOFS_PARENT_CACHE` is also specified.
+Alternatively, use `FIL_PROOFS_CACHE_DIR=/path/to/parent/cache`, in which the parent cache will be located in `$FIL_PROOFS_CACHE_DIR/filecoin-parents`. Note that if you're using `FIL_PROOFS_CACHE_DIR`, it must be set through the environment and cannot be set using the configuration file. This setting has no effect if `FIL_PROOFS_PARENT_CACHE` is also specified.
 
 If you are concerned about the integrity of your on-disk parent cache files, they can be verified at runtime when accessed for the first time using an environment variable
 
@@ -241,7 +243,7 @@ If you are concerned about the integrity of your on-disk parent cache files, the
 FIL_PROOFS_VERIFY_CACHE=1
 ```
 
-If they are inconsistent (compared to the manifest in storage-proofs/porep/parent-cache.json), they will be automatically re-generated at runtime.  If that cache generation fails, it will be reported as an error.
+If they are inconsistent (compared to the manifest in storage-proofs/porep/parent-cache.json), they will be automatically re-generated at runtime. If that cache generation fails, it will be reported as an error.
 
 ```
 FIL_PROOFS_USE_MULTICORE_SDR
@@ -253,8 +255,7 @@ assemble each nodes parents and perform some prehashing. This setting is not ena
 setting `FIL_PROOFS_USE_MULTICORE_SDR=1`.
 
 Best performance will also be achieved when it is possible to lock pages which have been memory-mapped. This can be
-accomplished by running the process as a non-root user, and increasing the system limit for max locked memory with `ulimit
--l`. Alternatively, the process can be run as root, if its total locked pages will fit inside physical memory. Otherwise, the OOM-killer may be invoked. Two sector size's worth of data (for current and previous layers) must be locked -- along with 56 *
+accomplished by running the process as a non-root user, and increasing the system limit for max locked memory with `ulimit -l`. Alternatively, the process can be run as root, if its total locked pages will fit inside physical memory. Otherwise, the OOM-killer may be invoked. Two sector size's worth of data (for current and previous layers) must be locked -- along with 56 \*
 `FIL_PROOFS_PARENT_CACHE_SIZE` bytes for the parent cache.
 
 Default parameters have been tuned to provide good performance on the AMD Ryzen Threadripper 3970x. It may be useful to
@@ -271,19 +272,19 @@ only the default configuration on default hardware (3970x) is known to work well
 
 ### GPU Usage
 
-The column hashed tree 'tree_c' can optionally be built using the GPU with noticeable speed-up over the CPU.  To activate the GPU for this, use the environment variable
+The column hashed tree 'tree_c' can optionally be built using the GPU with noticeable speed-up over the CPU. To activate the GPU for this, use the environment variable
 
 ```
 FIL_PROOFS_USE_GPU_COLUMN_BUILDER=1
 ```
 
-Similarly, the 'tree_r_last' tree can also be built using the GPU, which provides at least a 2x speed-up over the CPU.  To activate the GPU for this, use the environment variable
+Similarly, the 'tree_r_last' tree can also be built using the GPU, which provides at least a 2x speed-up over the CPU. To activate the GPU for this, use the environment variable
 
 ```
 FIL_PROOFS_USE_GPU_TREE_BUILDER=1
 ```
 
-Note that *both* of these GPU options can and should be enabled if a supported GPU is available.
+Note that _both_ of these GPU options can and should be enabled if a supported GPU is available.
 
 ### Advanced GPU Usage
 
@@ -295,31 +296,31 @@ FIL_PROOFS_MAX_GPU_TREE_BATCH_SIZE=Z
 
 The default batch size value is 700,000 tree nodes.
 
-When using the GPU to build 'tree_c' (using `FIL_PROOFS_USE_GPU_COLUMN_BUILDER=1`), two experimental variables can be tested for local optimization of your hardware.  First, you can set
+When using the GPU to build 'tree_c' (using `FIL_PROOFS_USE_GPU_COLUMN_BUILDER=1`), two experimental variables can be tested for local optimization of your hardware. First, you can set
 
 ```
 FIL_PROOFS_MAX_GPU_COLUMN_BATCH_SIZE=X
 ```
 
-The default value for this is 400,000, which means that we compile 400,000 columns at once and pass them in batches to the GPU.  Each column is a "single node x the number of layers" (e.g. a 32GiB sector has 11 layers, so each column consists of 11 nodes).  This value is used as both a reasonable default, but it's also measured that it takes about as much time to compile this size batch as it does for the GPU to consume it (using the 2080ti for testing), which we do in parallel for maximized throughput.  Changing this value may exhaust GPU RAM if set too large, or may decrease performance if set too low.  This setting is made available for your experimentation during this step.
+The default value for this is 400,000, which means that we compile 400,000 columns at once and pass them in batches to the GPU. Each column is a "single node x the number of layers" (e.g. a 32GiB sector has 11 layers, so each column consists of 11 nodes). This value is used as both a reasonable default, but it's also measured that it takes about as much time to compile this size batch as it does for the GPU to consume it (using the 2080ti for testing), which we do in parallel for maximized throughput. Changing this value may exhaust GPU RAM if set too large, or may decrease performance if set too low. This setting is made available for your experimentation during this step.
 
-The second variable that may affect overall 'tree_c' performance is the size of the parallel write buffers when storing the tree data returned from the GPU.  This value is set to a reasonable default of 262,144, but you may adjust it as needed if an individual performance benefit can be achieved.  To adjust this value, use the environment variable
+The second variable that may affect overall 'tree_c' performance is the size of the parallel write buffers when storing the tree data returned from the GPU. This value is set to a reasonable default of 262,144, but you may adjust it as needed if an individual performance benefit can be achieved. To adjust this value, use the environment variable
 
 ```
 FIL_PROOFS_COLUMN_WRITE_BATCH_SIZE=Y
 ```
 
-Note that this value affects the degree of parallelism used when persisting the column tree to disk, and may exhaust system file descriptors if the limit is not adjusted appropriately (e.g. using `ulimit -n`).  If persisting the tree is failing due to a 'bad file descriptor' error, try adjusting this value to something larger (e.g. 524288, or 1048576).  Increasing this value processes larger chunks at once, which results in larger (but fewer) disk writes in parallel.
+Note that this value affects the degree of parallelism used when persisting the column tree to disk, and may exhaust system file descriptors if the limit is not adjusted appropriately (e.g. using `ulimit -n`). If persisting the tree is failing due to a 'bad file descriptor' error, try adjusting this value to something larger (e.g. 524288, or 1048576). Increasing this value processes larger chunks at once, which results in larger (but fewer) disk writes in parallel.
 
-When the library is built with both CUDA and OpenCL support, you can choose which one to use at run time.  Use the environment variable:
+When the library is built with both CUDA and OpenCL support, you can choose which one to use at run time. Use the environment variable:
 
 ```
 FIL_PROOFS_GPU_FRAMEWORK=cuda
 ```
 
-You can set it to `opencl` to use OpenCL instead.  The default value is `cuda`, when you set nothing or any other (invalid) value.
+You can set it to `opencl` to use OpenCL instead. The default value is `cuda`, when you set nothing or any other (invalid) value.
 
-CUDA kernels are compiled and build time.  By default, they are built for recent architectures, Turing (`sm_75` and Ampere (`sm_80`, `sm_86`).  This increases the overall build time by several minutes.  You can reduce it by compiling it only for the specific aritecture you need.  For example if you only need the CUDA kernels to work on the Turing architecture, you can set on all dependencies that use CUDA kernels:
+CUDA kernels are compiled and build time. By default, they are built for recent architectures, Turing (`sm_75` and Ampere (`sm_80`, `sm_86`). This increases the overall build time by several minutes. You can reduce it by compiling it only for the specific aritecture you need. For example if you only need the CUDA kernels to work on the Turing architecture, you can set on all dependencies that use CUDA kernels:
 
 ```
 BELLMAN_CUDA_NVCC_ARGS="--fatbin --gpu-architecture=sm_75 --generate-code=arch=compute_75,code=sm_75"
@@ -328,17 +329,17 @@ NEPTUNE_CUDA_NVCC_ARGS="--fatbin --gpu-architecture=sm_75 --generate-code=arch=c
 
 ### Memory
 
-At the moment the default configuration is set to reduce memory consumption as much as possible so there's not much to do from the user side. We are now storing Merkle trees on disk, which were the main source of memory consumption.  You should expect a maximum RSS between 1-2 sector sizes, if you experience peaks beyond that range please report an issue (you can check the max RSS with the `/usr/bin/time -v` command).
+At the moment the default configuration is set to reduce memory consumption as much as possible so there's not much to do from the user side. We are now storing Merkle trees on disk, which were the main source of memory consumption. You should expect a maximum RSS between 1-2 sector sizes, if you experience peaks beyond that range please report an issue (you can check the max RSS with the `/usr/bin/time -v` command).
 
 ### Advanced Storage Tuning
 
-With respect to the 'tree_r_last' cached Merkle Trees persisted on disk, a value is exposed for tuning the amount of storage space required.  Cached merkle trees are like normal merkle trees, except we discard some number of rows above the base level.  There is a trade-off in discarding too much data, which may result in rebuilding almost the entire tree when it's needed.  The other extreme is discarding too few rows, which results in higher utilization of disk space.  The default value is chosen to carefully balance this trade-off, but you may tune it as needed for your local hardware configuration.  To adjust this value, use the environment variable
+With respect to the 'tree_r_last' cached Merkle Trees persisted on disk, a value is exposed for tuning the amount of storage space required. Cached merkle trees are like normal merkle trees, except we discard some number of rows above the base level. There is a trade-off in discarding too much data, which may result in rebuilding almost the entire tree when it's needed. The other extreme is discarding too few rows, which results in higher utilization of disk space. The default value is chosen to carefully balance this trade-off, but you may tune it as needed for your local hardware configuration. To adjust this value, use the environment variable
 
 ```
 FIL_PROOFS_ROWS_TO_DISCARD=N
 ```
 
-Note that if you modify this value and seal sectors using it, it CANNOT be modified without updating all previously sealed sectors (or alternatively, discarding all previously sealed sectors).  A tool is provided for this conversion, but it's considered an expensive operation and should be carefully planned and completed before restarting any nodes with the new setting.  The reason for this is because all 'tree_r_last' trees must be rebuilt from the sealed replica file(s) with the new target value of FIL_PROOFS_ROWS_TO_DISCARD in order to make sure that the system is consistent.
+Note that if you modify this value and seal sectors using it, it CANNOT be modified without updating all previously sealed sectors (or alternatively, discarding all previously sealed sectors). A tool is provided for this conversion, but it's considered an expensive operation and should be carefully planned and completed before restarting any nodes with the new setting. The reason for this is because all 'tree_r_last' trees must be rebuilt from the sealed replica file(s) with the new target value of FIL_PROOFS_ROWS_TO_DISCARD in order to make sure that the system is consistent.
 
 Adjusting this setting is NOT recommended unless you understand the implications of modification.
 
@@ -369,17 +370,17 @@ View the docs by pointing your browser at: `…/rust-fil-proofs/target/doc/proof
 
 The **FPS** is accessed from [**lotus**](https://github.com/filecoin-project/lotus) via FFI calls to its API, which is the union of the APIs of its constituents:
 
- The source of truth defining the **FPS** APIs is a separate repository of Rust source code. View the source directly:
+The source of truth defining the **FPS** APIs is a separate repository of Rust source code. View the source directly:
 
 - [**filecoin-proofs-api**](https://github.com/filecoin-project/rust-filecoin-proofs-api)
 
-The above referenced repository contains the consumer facing API and it provides a versioned wrapper around the `rust-fil-proofs` repository's internal APIs.  End users should not be using the internal APIs of `rust-fil-proofs` directly, as they are subject to change outside of the formal API provided.
+The above referenced repository contains the consumer facing API and it provides a versioned wrapper around the `rust-fil-proofs` repository's internal APIs. End users should not be using the internal APIs of `rust-fil-proofs` directly, as they are subject to change outside of the formal API provided.
 
 To generate the API documentation locally, follow the instructions to generate documentation above. Then navigate to:
+
 - **Filecoin Proofs API:** `…/rust-filecoin-proofs-api/target/doc/filecoin_proofs_api/index.html`
 
 - [Go implementation of filecoin-proofs sectorbuilder API](https://github.com/filecoin-project/go-sectorbuilder/blob/master/sectorbuilder.go) and [associated interface structures](https://github.com/filecoin-project/go-sectorbuilder/blob/master/interface.go).
-
 
 ## Contributing
 
