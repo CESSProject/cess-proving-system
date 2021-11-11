@@ -4,12 +4,12 @@ use std::io::BufWriter;
 use std::path::Path;
 
 use anyhow::Result;
-use clap::{value_t, App, Arg};
-use filecoin_hashers::sha256::Sha256Hasher;
-use filecoin_proofs::{
+use cess_proofs::{
     with_shape, DRG_DEGREE, EXP_DEGREE, SECTOR_SIZE_2_KIB, SECTOR_SIZE_32_GIB, SECTOR_SIZE_512_MIB,
     SECTOR_SIZE_64_GIB, SECTOR_SIZE_8_MIB,
 };
+use clap::{value_t, App, Arg};
+use filecoin_hashers::sha256::Sha256Hasher;
 use serde::{Deserialize, Serialize};
 use storage_proofs_core::{api_version::ApiVersion, merkle::MerkleTreeTrait, proof::ProofScheme};
 use storage_proofs_porep::stacked::{LayerChallenges, SetupParams, StackedDrg};

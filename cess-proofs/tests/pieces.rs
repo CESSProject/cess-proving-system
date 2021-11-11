@@ -3,7 +3,7 @@ use std::iter::Iterator;
 
 use anyhow::Result;
 use blstrs::Scalar as Fr;
-use filecoin_proofs::{
+use cess_proofs::{
     add_piece, commitment_from_fr,
     pieces::{
         compute_comm_d, get_piece_alignment, get_piece_start_byte, piece_hash, verify_pieces,
@@ -288,7 +288,7 @@ fn test_verify_padded_pieces() {
 #[test]
 #[ignore] // slow test
 fn test_verify_random_pieces() -> Result<()> {
-    use filecoin_proofs::pieces::sum_piece_bytes_with_alignment;
+    use cess_proofs::pieces::sum_piece_bytes_with_alignment;
 
     let rng = &mut XorShiftRng::from_seed(TEST_SEED);
 

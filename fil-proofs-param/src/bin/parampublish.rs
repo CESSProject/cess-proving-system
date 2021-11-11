@@ -6,8 +6,7 @@ use std::path::Path;
 use std::process::{exit, Command};
 
 use anyhow::{ensure, Context, Result};
-use dialoguer::{theme::ColorfulTheme, MultiSelect, Select};
-use filecoin_proofs::{
+use cess_proofs::{
     param::{
         add_extension, filename_to_parameter_id, get_digest_for_file_within_cache,
         get_full_path_for_file_within_cache, has_extension, parameter_id_to_metadata_map,
@@ -15,6 +14,7 @@ use filecoin_proofs::{
     SECTOR_SIZE_2_KIB, SECTOR_SIZE_32_GIB, SECTOR_SIZE_512_MIB, SECTOR_SIZE_64_GIB,
     SECTOR_SIZE_8_MIB,
 };
+use dialoguer::{theme::ColorfulTheme, MultiSelect, Select};
 use humansize::{file_size_opts, FileSize};
 use itertools::Itertools;
 use lazy_static::lazy_static;

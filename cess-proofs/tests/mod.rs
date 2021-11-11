@@ -1,11 +1,11 @@
 use std::panic::panic_any;
 
 use blstrs::Scalar as Fr;
-use ff::Field;
-use filecoin_proofs::{
+use cess_proofs::{
     as_safe_commitment, verify_seal, DefaultOctLCTree, DefaultTreeDomain, PoRepConfig,
     PoRepProofPartitions, SectorSize, POREP_PARTITIONS, SECTOR_SIZE_2_KIB, TEST_SEED,
 };
+use ff::Field;
 use fr32::bytes_into_fr;
 use rand::SeedableRng;
 use rand_xorshift::XorShiftRng;

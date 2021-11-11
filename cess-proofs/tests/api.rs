@@ -8,9 +8,7 @@ use anyhow::{ensure, Result};
 use bellperson::groth16;
 use bincode::serialize;
 use blstrs::{Bls12, Scalar as Fr};
-use ff::Field;
-use filecoin_hashers::Hasher;
-use filecoin_proofs::{
+use cess_proofs::{
     add_piece, aggregate_seal_commit_proofs, clear_cache, compute_comm_d, fauxrep_aux,
     generate_fallback_sector_challenges, generate_piece_commitment, generate_single_vanilla_proof,
     generate_single_window_post_with_vanilla, generate_window_post,
@@ -28,6 +26,8 @@ use filecoin_proofs::{
     SECTOR_SIZE_32_KIB, SECTOR_SIZE_4_KIB, WINDOW_POST_CHALLENGE_COUNT, WINDOW_POST_SECTOR_COUNT,
     WINNING_POST_CHALLENGE_COUNT, WINNING_POST_SECTOR_COUNT,
 };
+use ff::Field;
+use filecoin_hashers::Hasher;
 use rand::{random, Rng, SeedableRng};
 use rand_xorshift::XorShiftRng;
 use storage_proofs_core::{api_version::ApiVersion, is_legacy_porep_id, sector::SectorId};

@@ -2,8 +2,8 @@ use std::fs::{create_dir, remove_dir_all};
 use std::time::{SystemTime, UNIX_EPOCH};
 
 use anyhow::{ensure, Result};
+use cess_proofs::with_shape;
 use filecoin_hashers::Hasher;
-use filecoin_proofs::with_shape;
 use log::{debug, info};
 use rand::{thread_rng, Rng};
 use storage_proofs_core::merkle::{

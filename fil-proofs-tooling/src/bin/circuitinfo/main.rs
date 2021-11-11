@@ -2,14 +2,14 @@ use std::str::FromStr;
 
 use bellperson::{util_cs::bench_cs::BenchCS, Circuit};
 use blstrs::Scalar as Fr;
-use dialoguer::{theme::ColorfulTheme, MultiSelect};
-use filecoin_proofs::{
+use cess_proofs::{
     parameters::{public_params, window_post_public_params, winning_post_public_params},
     with_shape, DefaultPieceHasher, PaddedBytesAmount, PoRepConfig, PoRepProofPartitions,
     PoStConfig, PoStType, SectorSize, POREP_PARTITIONS, PUBLISHED_SECTOR_SIZES,
     WINDOW_POST_CHALLENGE_COUNT, WINDOW_POST_SECTOR_COUNT, WINNING_POST_CHALLENGE_COUNT,
     WINNING_POST_SECTOR_COUNT,
 };
+use dialoguer::{theme::ColorfulTheme, MultiSelect};
 use humansize::{file_size_opts, FileSize};
 use log::{info, warn};
 use storage_proofs_core::{

@@ -1,7 +1,7 @@
 use std::cmp::min;
 use std::io::{BufWriter, Seek, SeekFrom, Write};
 
-use filecoin_proofs::{
+use cess_proofs::{
     add_piece, seal_pre_commit_phase1, seal_pre_commit_phase2, validate_cache_for_precommit_phase2,
     MerkleTreeTrait, PaddedBytesAmount, PieceInfo, PoRepConfig, PoRepProofPartitions,
     PrivateReplicaInfo, PublicReplicaInfo, SealPreCommitOutput, SectorSize, UnpaddedBytesAmount,

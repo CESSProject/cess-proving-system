@@ -8,14 +8,14 @@ use std::sync::mpsc::{self, Receiver, Sender, TryRecvError};
 use std::thread;
 use std::time::{Duration, Instant};
 
+use cess_proofs::{
+    constants::{SectorShape8MiB, SECTOR_SIZE_8_MIB},
+    generate_winning_post,
+    types::{PoStConfig, SectorSize},
+    PoStType, PrivateReplicaInfo, WINNING_POST_CHALLENGE_COUNT, WINNING_POST_SECTOR_COUNT,
+};
 use clap::{arg_enum, value_t, App, Arg};
 use fil_proofs_tooling::shared::{create_replica, PROVER_ID, RANDOMNESS};
-use filecoin_proofs::constants::{SectorShape8MiB, SECTOR_SIZE_8_MIB};
-use filecoin_proofs::types::{PoStConfig, SectorSize};
-use filecoin_proofs::{
-    generate_winning_post, PoStType, PrivateReplicaInfo, WINNING_POST_CHALLENGE_COUNT,
-    WINNING_POST_SECTOR_COUNT,
-};
 use log::{debug, info};
 use storage_proofs_core::api_version::ApiVersion;
 use storage_proofs_core::sector::SectorId;

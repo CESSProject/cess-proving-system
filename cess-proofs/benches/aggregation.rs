@@ -1,12 +1,12 @@
 use std::sync::Once;
 use std::time::Duration;
 
-use criterion::{black_box, criterion_group, criterion_main, Criterion, Throughput};
-use filecoin_proofs::{
+use cess_proofs::{
     caches::{get_stacked_srs_key, get_stacked_srs_verifier_key},
     get_seal_inputs, PoRepConfig, PoRepProofPartitions, SectorShape2KiB, SectorShape32GiB,
     SectorSize, POREP_PARTITIONS, SECTOR_SIZE_2_KIB, SECTOR_SIZE_32_GIB,
 };
+use criterion::{black_box, criterion_group, criterion_main, Criterion, Throughput};
 use rand::{thread_rng, Rng};
 use storage_proofs_core::{api_version::ApiVersion, is_legacy_porep_id};
 

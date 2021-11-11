@@ -3,7 +3,7 @@ version: 2.1
 parameters:
   nightly-toolchain:
     type: string
-    default: "nightly-2021-04-24"
+    default: 'nightly-2021-04-24'
 
 executors:
   default:
@@ -22,9 +22,8 @@ executors:
     resource_class: arm.large
 
 setup-env: &setup-env
-  FIL_PROOFS_PARAMETER_CACHE: "/tmp/filecoin-proof-parameters/"
+  FIL_PROOFS_PARAMETER_CACHE: '/tmp/filecoin-proof-parameters/'
   RUST_LOG: info
-
 
 jobs:
   ensure_groth_parameters_and_keys_linux:
@@ -54,7 +53,7 @@ jobs:
       - run: rustc +$(cat rust-toolchain) --version
       - run: rustup toolchain list --verbose
       - persist_to_workspace:
-          root: "."
+          root: '.'
           paths:
             - Cargo.lock
       - save_rustup_cache
@@ -67,7 +66,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: "."
+          at: '.'
       - restore_rustup_cache
       - restore_parameter_cache
       - run:
@@ -81,7 +80,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: "."
+          at: '.'
       - restore_rustup_cache
       - restore_parameter_cache
       - run:
@@ -103,21 +102,20 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: "."
+          at: '.'
       - restore_rustup_cache
       - restore_parameter_cache
       - run:
           name: Test ignored in release profile
           command: |
-              ulimit -n 20000
-              ulimit -u 20000
-              ulimit -n 20000
-              cd << parameters.crate >>
-              cargo test --release -- --ignored --nocapture
+            ulimit -n 20000
+            ulimit -u 20000
+            ulimit -n 20000
+            cd << parameters.crate >>
+            cargo test --release -- --ignored --nocapture
           environment:
             RUST_TEST_THREADS: 1
           no_output_timeout: 30m
-
 
   # Running with `use_multicore_sdr=true` should be integrated directly into the test code. For now we
   # just re-run the lifecycle tests to exercise the use_multicore_sdr code path with that setting set.
@@ -127,7 +125,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: "."
+          at: '.'
       - restore_rustup_cache
       - restore_parameter_cache
       - run:
@@ -152,15 +150,15 @@ jobs:
       cargo-args:
         description: Addtional arguments for the cargo command
         type: string
-        default: ""
+        default: ''
       test-args:
         description: Additional arguments for the test executable (after the `--`)
         type: string
-        default: ""
+        default: ''
     steps:
       - checkout
       - attach_workspace:
-          at: "."
+          at: '.'
       - restore_rustup_cache
       - restore_parameter_cache
       - run:
@@ -193,7 +191,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: "."
+          at: '.'
       - restore_rustup_cache
       - restore_parameter_cache
       - run:
@@ -208,7 +206,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: "."
+          at: '.'
       - restore_rustup_cache
       - restore_parameter_cache
       - run:
@@ -237,7 +235,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: "."
+          at: '.'
       - restore_rustup_cache
       - restore_parameter_cache
       - run:
@@ -251,7 +249,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: "."
+          at: '.'
       - restore_rustup_cache
       - run:
           name: Run cargo fmt
@@ -263,14 +261,14 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: "."
+          at: '.'
       - restore_rustup_cache
       - run:
           name: Run cargo clippy
           command: cargo +$(cat rust-toolchain) clippy --all-targets --workspace -- -D warnings
   test_darwin:
     macos:
-      xcode: "12.5.0"
+      xcode: '12.5.0'
     working_directory: ~/crate
     resource_class: large
     environment: *setup-env
@@ -330,7 +328,7 @@ commands:
       # restored on executors that have a different home directory.
       - run: cp -R ~/.cargo ~/.rustup /tmp/
       - save_cache:
-          name: "Save rustup cache"
+          name: 'Save rustup cache'
           key: cargo-v28-e-{{ checksum "rust-toolchain" }}-{{ checksum "Cargo.toml" }}-{{ checksum "Cargo.lock" }}
           paths:
             - /tmp/.cargo
@@ -338,22 +336,22 @@ commands:
   restore_rustup_cache:
     steps:
       - restore_cache:
-          name: "Restore rustup cache"
+          name: 'Restore rustup cache'
           key: cargo-v28-e-{{ checksum "rust-toolchain" }}-{{ checksum "Cargo.toml" }}-{{ checksum "Cargo.lock" }}
       # Cache might not be created yet, hence ignore if the move fails
       - run: cp -R /tmp/.cargo /tmp/.rustup ~/ || true
   save_parameter_cache:
     steps:
       - save_cache:
-          name: "Save parameter cache"
+          name: 'Save parameter cache'
           key: proof-params-v28-f-{{ checksum "filecoin-proofs/parameters.json" }}
           paths:
-            - "/tmp/paramcache.awesome"
-            - "/tmp/filecoin-proof-parameters/"
+            - '/tmp/paramcache.awesome'
+            - '/tmp/filecoin-proof-parameters/'
   restore_parameter_cache:
     steps:
       - restore_cache:
-          name: "Restore parameter cache"
+          name: 'Restore parameter cache'
           key: proof-params-v28-f-{{ checksum "filecoin-proofs/parameters.json" }}
 
 workflows:
@@ -373,31 +371,31 @@ workflows:
           requires:
             - cargo_fetch
             - ensure_groth_parameters_and_keys_linux
-            
+
       - test_ignored_release:
           name: test_ignored_release_storage_proofs_post
-          crate: "storage-proofs-post"
+          crate: 'storage-proofs-post'
           requires:
             - cargo_fetch
             - ensure_groth_parameters_and_keys_linux
-            
+
       - test_ignored_release:
           name: test_ignored_release_storage_proofs_core
-          crate: "storage-proofs-core"
+          crate: 'storage-proofs-core'
           requires:
             - cargo_fetch
             - ensure_groth_parameters_and_keys_linux
-            
+
       - test_ignored_release:
           name: test_ignored_release_storage_proofs_porep
-          crate: "storage-proofs-porep"
+          crate: 'storage-proofs-porep'
           requires:
             - cargo_fetch
             - ensure_groth_parameters_and_keys_linux
-            
+
       - test_ignored_release:
-          name: test_ignored_release_filecoin_proofs
-          crate: "filecoin-proofs"
+          name: test_ignored_release_cess_proofs
+          crate: 'cess-proofs'
           requires:
             - cargo_fetch
             - ensure_groth_parameters_and_keys_linux
@@ -410,22 +408,22 @@ workflows:
 
       - test_gpu_tree_building:
           name: test_gpu_tree_building_opencl (ignored)
-          test-args: "--ignored"
+          test-args: '--ignored'
           requires:
             - cargo_fetch
             - ensure_groth_parameters_and_keys_linux
 
       - test_gpu_tree_building:
           name: test_gpu_tree_building_cuda (regular)
-          cargo-args: "--features cuda"
+          cargo-args: '--features cuda'
           requires:
             - cargo_fetch
             - ensure_groth_parameters_and_keys_linux
 
       - test_gpu_tree_building:
           name: test_gpu_tree_building_cuda (ignored)
-          cargo-args: "--features cuda"
-          test-args: "--ignored"
+          cargo-args: '--features cuda'
+          test-args: '--ignored'
           requires:
             - cargo_fetch
             - ensure_groth_parameters_and_keys_linux
@@ -436,58 +434,57 @@ workflows:
             - ensure_groth_parameters_and_keys_linux
 
       - test:
-          name: test_filecoin_proofs
-          crate: "filecoin-proofs"
+          name: test_cess_proofs
+          crate: 'cess-proofs'
           requires:
             - cargo_fetch
             - ensure_groth_parameters_and_keys_linux
 
       - test:
           name: test_storage_proofs_core
-          crate: "storage-proofs-core"
+          crate: 'storage-proofs-core'
           requires:
             - cargo_fetch
             - ensure_groth_parameters_and_keys_linux
 
       - test:
           name: test_storage_proofs_post
-          crate: "storage-proofs-post"
+          crate: 'storage-proofs-post'
           requires:
             - cargo_fetch
             - ensure_groth_parameters_and_keys_linux
 
       - test:
           name: test_storage_proofs_porep
-          crate: "storage-proofs-porep"
+          crate: 'storage-proofs-porep'
           requires:
             - cargo_fetch
             - ensure_groth_parameters_and_keys_linux
 
       - test:
           name: test_fil_proofs_tooling
-          crate: "fil-proofs-tooling"
+          crate: 'fil-proofs-tooling'
           requires:
             - cargo_fetch
             - ensure_groth_parameters_and_keys_linux
 
       - test:
           name: test_sha2raw
-          crate: "sha2raw"
+          crate: 'sha2raw'
           requires:
             - cargo_fetch
             - ensure_groth_parameters_and_keys_linux
 
       - test:
           name: test_filecoin_hashers
-          crate: "filecoin-hashers"
+          crate: 'filecoin-hashers'
           requires:
             - cargo_fetch
             - ensure_groth_parameters_and_keys_linux
 
-
       - test:
           name: test_fil_proofs_param
-          crate: "fil-proofs-param"
+          crate: 'fil-proofs-param'
           requires:
             - cargo_fetch
             - ensure_groth_parameters_and_keys_linux
@@ -512,6 +509,6 @@ workflows:
 
       - test:
           name: test_fr32
-          crate: "fr32"
+          crate: 'fr32'
           requires:
             - cargo_fetch

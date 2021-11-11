@@ -1,14 +1,14 @@
 use std::io::stdout;
 
 use anyhow::anyhow;
+use cess_proofs::{
+    constants::{WINNING_POST_CHALLENGE_COUNT, WINNING_POST_SECTOR_COUNT},
+    generate_winning_post, generate_winning_post_sector_challenge,
+    types::PoStConfig,
+    verify_winning_post, with_shape, PoStType,
+};
 use fil_proofs_tooling::shared::{create_replica, PROVER_ID, RANDOMNESS};
 use fil_proofs_tooling::{measure, Metadata};
-use filecoin_proofs::constants::{WINNING_POST_CHALLENGE_COUNT, WINNING_POST_SECTOR_COUNT};
-use filecoin_proofs::types::PoStConfig;
-use filecoin_proofs::{
-    generate_winning_post, generate_winning_post_sector_challenge, verify_winning_post, with_shape,
-    PoStType,
-};
 use log::info;
 use serde::Serialize;
 use storage_proofs_core::api_version::ApiVersion;

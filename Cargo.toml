@@ -1,7 +1,7 @@
 [workspace]
 
 members = [
-  "filecoin-proofs",
+  "cess-proofs",
   "storage-proofs-core",
   "storage-proofs-porep",
   "storage-proofs-post",

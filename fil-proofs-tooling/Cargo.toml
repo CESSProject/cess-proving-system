@@ -13,7 +13,7 @@ readme = "README.md"
 storage-proofs-core = { path = "../storage-proofs-core", version = "^10.0.0", default-features = false}
 storage-proofs-porep = { path = "../storage-proofs-porep", version = "^10.0.0", default-features = false }
 storage-proofs-post = { path = "../storage-proofs-post", version = "^10.0.0", default-features = false }
-filecoin-proofs = { path = "../filecoin-proofs", default-features = false }
+cess-proofs = { path = "../cess-proofs", default-features = false }
 filecoin-hashers = { path = "../filecoin-hashers", default-features = false, features = ["poseidon", "blake2s", "sha256"] }
 clap = "2"
 serde = { version = "1.0", features = ["derive"] }
@@ -59,7 +59,7 @@ cuda = [
     "storage-proofs-core/cuda",
     "storage-proofs-porep/cuda",
     "storage-proofs-post/cuda",
-    "filecoin-proofs/cuda",
+    "cess-proofs/cuda",
     "bellperson/cuda",
     "filecoin-hashers/cuda",
 ]
@@ -67,7 +67,7 @@ opencl = [
     "storage-proofs-core/opencl",
     "storage-proofs-porep/opencl",
     "storage-proofs-post/opencl",
-    "filecoin-proofs/opencl",
+    "cess-proofs/opencl",
     "bellperson/opencl",
     "filecoin-hashers/opencl",
 ]

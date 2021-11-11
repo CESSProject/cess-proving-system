@@ -5,10 +5,10 @@ use std::path::{Path, PathBuf};
 use std::process::{exit, Command};
 
 use anyhow::{ensure, Context, Result};
-use dialoguer::{theme::ColorfulTheme, MultiSelect, Select};
-use filecoin_proofs::param::{
+use cess_proofs::param::{
     get_digest_for_file_within_cache, get_full_path_for_file_within_cache, has_extension,
 };
+use dialoguer::{theme::ColorfulTheme, MultiSelect, Select};
 use flate2::read::GzDecoder;
 use humansize::{file_size_opts, FileSize};
 use lazy_static::lazy_static;

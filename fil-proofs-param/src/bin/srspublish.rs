@@ -6,7 +6,7 @@ use std::path::Path;
 use std::process::{exit, Command};
 
 use anyhow::{ensure, Context, Result};
-use filecoin_proofs::param::{
+use cess_proofs::param::{
     get_digest_for_file_within_cache, get_full_path_for_file_within_cache, has_extension,
 };
 use lazy_static::lazy_static;

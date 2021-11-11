@@ -1,11 +1,11 @@
 use std::io::{Cursor, Read};
 use std::time::Duration;
 
-use criterion::{criterion_group, criterion_main, Criterion, Throughput};
-use filecoin_proofs::{
+use cess_proofs::{
     add_piece, get_seal_inputs, PaddedBytesAmount, PoRepConfig, PoRepProofPartitions,
     SectorShape2KiB, SectorSize, UnpaddedBytesAmount, POREP_PARTITIONS, SECTOR_SIZE_2_KIB,
 };
+use criterion::{criterion_group, criterion_main, Criterion, Throughput};
 use fr32::Fr32Reader;
 use rand::{thread_rng, Rng};
 use storage_proofs_core::{api_version::ApiVersion, is_legacy_porep_id};

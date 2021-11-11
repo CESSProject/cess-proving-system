@@ -3,13 +3,13 @@ use std::path::{Path, PathBuf};
 
 use anyhow::{ensure, Context, Result};
 use bincode::deserialize;
-use clap::{value_t, App, Arg, SubCommand};
-use filecoin_hashers::Hasher;
-use filecoin_proofs::{
+use cess_proofs::{
     is_sector_shape_base, is_sector_shape_sub2, is_sector_shape_sub8, is_sector_shape_top2,
     with_shape, DefaultTreeDomain, PersistentAux, SectorShapeBase, SectorShapeSub2,
     SectorShapeSub8, SectorShapeTop2, OCT_ARITY,
 };
+use clap::{value_t, App, Arg, SubCommand};
+use filecoin_hashers::Hasher;
 use generic_array::typenum::Unsigned;
 use memmap::MmapOptions;
 use merkletree::{

@@ -2,8 +2,7 @@ use std::env;
 use std::process::exit;
 use std::str::FromStr;
 
-use dialoguer::{theme::ColorfulTheme, MultiSelect};
-use filecoin_proofs::{
+use cess_proofs::{
     constants::{
         DefaultPieceHasher, POREP_PARTITIONS, PUBLISHED_SECTOR_SIZES, WINDOW_POST_CHALLENGE_COUNT,
         WINDOW_POST_SECTOR_COUNT, WINNING_POST_CHALLENGE_COUNT, WINNING_POST_SECTOR_COUNT,
@@ -12,6 +11,7 @@ use filecoin_proofs::{
     types::{PaddedBytesAmount, PoRepConfig, PoRepProofPartitions, PoStConfig, SectorSize},
     with_shape, PoStType,
 };
+use dialoguer::{theme::ColorfulTheme, MultiSelect};
 use humansize::{file_size_opts, FileSize};
 use indicatif::ProgressBar;
 use log::{error, info, warn};
