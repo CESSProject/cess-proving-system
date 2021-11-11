@@ -20,7 +20,7 @@ There are currently several different crates:
   - **StackedDrgPoRep**
 
 - [**Storage Proofs PoSt (`storage-proofs-post`)**](./storage-proofs-post)
-  `storage-proofs-post` is intended to serve as a reference implementation for _**Proof-of-Space-time**_ (**PoSt**), for `filecoin-proofs`.
+  `storage-proofs-post` is intended to serve as a reference implementation for _**Proof-of-Space-time**_ (**PoSt**), for `cess-proofs`.
 
   Primary Components:
 
@@ -31,9 +31,9 @@ There are currently several different crates:
 
 ## Security Audits
 
-The `rust-fil-proofs` proofs code and the [Filecoin Spec](https://bafybeidxw5vxjdwsun2zc2illagf43v6w5r5w63vg455h7vjesbyqssg64.ipfs.dweb.link/algorithms/sdr/) has undergone a [proofs security audit](audits/Sigma-Prime-Protocol-Labs-Filecoin-Proofs-Security-Review-v2.1.pdf) performed by [Sigma Prime](https://sigmaprime.io/) and been deemed free of _critical_ or _major_ security issues. In addition to the security review, the document provides the summary of findings, vulnerability classifications, and recommended resolutions. All known issues have been resolved to date in both the code and the specification.
+The `cess-proving-system` proofs code and the [Filecoin Spec](https://bafybeidxw5vxjdwsun2zc2illagf43v6w5r5w63vg455h7vjesbyqssg64.ipfs.dweb.link/algorithms/sdr/) has undergone a [proofs security audit](audits/Sigma-Prime-Protocol-Labs-Filecoin-Proofs-Security-Review-v2.1.pdf) performed by [Sigma Prime](https://sigmaprime.io/) and been deemed free of _critical_ or _major_ security issues. In addition to the security review, the document provides the summary of findings, vulnerability classifications, and recommended resolutions. All known issues have been resolved to date in both the code and the specification.
 
-`rust-fil-proofs` has also undergone a [SNARK proofs security audit performed by Dr. Jean-Philippe Aumasson and Antony Vennard](audits/protocolai-audit-20200728.pdf) and been deemed free of _critical_ or _major_ security issues. In addition to the security analysis, the document provides the audit goals, methodology, functionality descriptions and finally observations on what could be improved. All known issues have been resolved to date.
+`cess-proving-system` has also undergone a [SNARK proofs security audit performed by Dr. Jean-Philippe Aumasson and Antony Vennard](audits/protocolai-audit-20200728.pdf) and been deemed free of _critical_ or _major_ security issues. In addition to the security analysis, the document provides the audit goals, methodology, functionality descriptions and finally observations on what could be improved. All known issues have been resolved to date.
 
 ## Design Notes
 
@@ -45,15 +45,15 @@ If at any point it were to become clear that the FFI approach is irredeemably pr
 
 ## Install and configure Rust
 
-**NOTE:** If you have installed `rust-fil-proofs` incidentally, as a submodule of `lotus`, then you may already have installed Rust.
+**NOTE:** If you have installed `cess-proving-system` incidentally, as a submodule of `lotus`, then you may already have installed Rust.
 
-The instructions below assume you have independently installed `rust-fil-proofs` in order to test, develop, or experiment with it.
+The instructions below assume you have independently installed `cess-proving-system` in order to test, develop, or experiment with it.
 
 [Install Rust using rustup.](https://www.rust-lang.org/en-US/install.html)
 
 ## Build
 
-**NOTE:** `rust-fil-proofs` can only be built for and run on 64-bit platforms; building will panic if the target architecture is not 64-bits.
+**NOTE:** `cess-proving-system` can only be built for and run on 64-bit platforms; building will panic if the target architecture is not 64-bits.
 
 Before building you will need OpenCL to be installed. On Ubuntu, this can be achieved with `apt install ocl-icd-opencl-dev`. Other system dependencies such as 'gcc/clang', 'wall' and 'cmake' are also required.
 
@@ -185,7 +185,7 @@ For advanced/verbose/debug logging, you can use the code setting
 
 ## Settings
 
-Further down in this README, various settings are described that can be adjusted by the end-user. These settings are summarized in `rust-fil-proofs.config.toml.sample` and this configuration file can be used directly if copied to `./rust-fil-proofs.config.toml`. Alternatively, each setting can be set by using environment variables of the form "FIL*PROOFS*<setting name here>", in all caps. For example, to set `rows_to_discard` to the value 2, you would set `FIL_PROOFS_ROWS_TO_DISCARD=2` in your environment.
+Further down in this README, various settings are described that can be adjusted by the end-user. These settings are summarized in `cess-proving-system.config.toml.sample` and this configuration file can be used directly if copied to `./cess-proving-system.config.toml`. Alternatively, each setting can be set by using environment variables of the form "FIL*PROOFS*<setting name here>", in all caps. For example, to set `rows_to_discard` to the value 2, you would set `FIL_PROOFS_ROWS_TO_DISCARD=2` in your environment.
 
 Any configuration setting that is not specified has a reasonable default already chosen.
 
@@ -345,16 +345,16 @@ Adjusting this setting is NOT recommended unless you understand the implications
 
 ## Generate Documentation
 
-First, navigate to the `rust-fil-proofs` directory.
+First, navigate to the `cess-proving-system` directory.
 
-- If you cloned `rust-fil-proofs` manually, it will be wherever you cloned it:
+- If you cloned `cess-proving-system` manually, it will be wherever you cloned it:
 
 ```
-> git clone https://github.com/filecoin-project/rust-fil-proofs.git
-> cd rust-fil-proofs
+> git clone https://github.com/CESSProject/cess-proving-system.git
+> cd cess-proving-system
 ```
 
-For documentation corresponding to the latest source, you should clone `rust-fil-proofs` yourself.
+For documentation corresponding to the latest source, you should clone `cess-proving-system` yourself.
 
 Now, generate the documentation:
 
@@ -362,7 +362,7 @@ Now, generate the documentation:
 > cargo doc --all --no-deps
 ```
 
-View the docs by pointing your browser at: `…/rust-fil-proofs/target/doc/proofs/index.html`.
+View the docs by pointing your browser at: `…/cess-proving-system/target/doc/proofs/index.html`.
 
 ---
 
@@ -374,7 +374,7 @@ The source of truth defining the **FPS** APIs is a separate repository of Rust s
 
 - [**filecoin-proofs-api**](https://github.com/filecoin-project/rust-filecoin-proofs-api)
 
-The above referenced repository contains the consumer facing API and it provides a versioned wrapper around the `rust-fil-proofs` repository's internal APIs. End users should not be using the internal APIs of `rust-fil-proofs` directly, as they are subject to change outside of the formal API provided.
+The above referenced repository contains the consumer facing API and it provides a versioned wrapper around the `cess-proving-system` repository's internal APIs. End users should not be using the internal APIs of `cess-proving-system` directly, as they are subject to change outside of the formal API provided.
 
 To generate the API documentation locally, follow the instructions to generate documentation above. Then navigate to:
 
