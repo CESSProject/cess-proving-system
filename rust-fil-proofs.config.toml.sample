@@ -1,10 +1,10 @@
 # To use this configuration, copy this file to './rust-fil-proofs.config.toml'.
 
 # The location to store downloaded parameter files required for proofs.
-parameter_cache = "/var/tmp/filecoin-proofs-parameters/"
+parameter_cache = "/var/tmp/cess-proofs-parameters/"
 
 # The location to store the on-disk parents cache.
-parent_cache = "/var/tmp/filecoin-parents"
+parent_cache = "/var/tmp/cess-parents"
 # The max number of parent cache elements to have mapped in RAM at a time.
 sdr_parents_cache_size = 2_048
 
