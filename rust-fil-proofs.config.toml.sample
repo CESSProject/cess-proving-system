@@ -1,4 +1,4 @@
-# To use this configuration, copy this file to './rust-fil-proofs.config.toml'.
+# To use this configuration, copy this file to './cess-proving-system.config.toml'.
 
 # The location to store downloaded parameter files required for proofs.
 parameter_cache = "/var/tmp/cess-proofs-parameters/"

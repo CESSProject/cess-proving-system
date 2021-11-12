@@ -7,5 +7,5 @@ heaptrack*
 .bencher
 *.profile
 *.heap
-rust-fil-proofs.config.toml
+cess-proving-system.config.toml
 .vscode

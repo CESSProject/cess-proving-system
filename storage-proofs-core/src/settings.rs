@@ -8,7 +8,7 @@ lazy_static! {
     pub static ref SETTINGS: Settings = Settings::new().expect("invalid configuration");
 }
 
-const SETTINGS_PATH: &str = "./rust-fil-proofs.config.toml";
+const SETTINGS_PATH: &str = "./cess-proving-system.config.toml";
 const PREFIX: &str = "FIL_PROOFS";
 
 #[derive(Debug, Serialize, Deserialize)]
