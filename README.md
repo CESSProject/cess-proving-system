@@ -2,7 +2,7 @@
 
 > Forked from [**Filecoin rust-fil-proofs**](https://github.com/filecoin-project/rust-fil-proofs)
 
-The **CESS Proving Subsystem** is of **Filecoin Proving Subsystem** (or FPS) provides the storage proofs required by the Filecoin protocol and has some major improvements. It is implemented entirely in Rust, as a series of partially inter-dependent crates – some of which export C bindings to the supported API.
+The **CESS Proving Subsystem** is a fork of **Filecoin Proving Subsystem** (or FPS) provides the storage proofs required by the Filecoin protocol and has some major improvements. It is implemented entirely in Rust, as a series of partially inter-dependent crates – some of which export C bindings to the supported API.
 
 There are currently several different crates:
 
