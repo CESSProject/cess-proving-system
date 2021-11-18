@@ -130,7 +130,7 @@ The scope should be the name of the crate affected (as perceived by the person r
 The following is the list of supported scopes:
 
 - **cess-proofs-tooling**
-- **filecoin-proofs**
+- **cess-proofs**
 - **storage-proofs**
 
 There are currently a few exceptions to the "use package name" rule:

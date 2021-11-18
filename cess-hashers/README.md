@@ -1,7 +1,6 @@
-# Filecoin Hashers
+# CESS Hashers
 
 > Different hash functions and abstraction over them.
-
 
 Available hashers are
 

@@ -1,7 +1,6 @@
-# Filecoin Parameters
+# CESS Parameters
 
-> Parameter related utilities for Filecoin.
-
+> Parameter related utilities for CESS.
 
 Available tools are
 

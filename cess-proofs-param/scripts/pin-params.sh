@@ -26,7 +26,7 @@ set -Eeuo pipefail
 #   CLUSTER_TOKEN="user:pass" DNSIMPLE_TOKEN="xyz" ./pin-params.sh
 #
 
-INPUT_DIR=${1:-"/var/tmp/filecoin-proof-parameters"}
+INPUT_DIR=${1:-"/var/tmp/cess-proofs-parameters"}
 : "${CLUSTER_TOKEN:?please set CLUSTER_TOKEN env var}"
 : "${DNSIMPLE_TOKEN:?please set DNSIMPLE_TOKEN env var}"
 
@@ -34,7 +34,7 @@ echo "checking $INPUT_DIR"
 
 # Grab the version number from the files in the dir.
 # Fail if more than 1 version or doesnt match a version string like vNN, e.g v12
-if ls -A $INPUT_DIR &> /dev/null; then
+if ls -A $INPUT_DIR &>/dev/null; then
   # version will be a list if there is more than one...
   VERSION=$(ls $INPUT_DIR | sort -r | cut -c 1-3 | uniq)
   echo found $VERSION
@@ -66,16 +66,16 @@ ROOT_CID=$(ipfs-cluster-ctl \
   add --quieter \
   --local \
   --name $CLUSTER_PIN_NAME \
-  --recursive $INPUT_DIR )
+  --recursive $INPUT_DIR)
 
 echo "ok! root cid is $ROOT_CID"
 
 # Pin to main cluster additionally.
 ipfs-cluster-ctl \
-    --host $ADDITIONAL_CLUSTER_HOST \
-    --basic-auth $CLUSTER_TOKEN \
-    pin add $ROOT_CID \
-    --no-status
+  --host $ADDITIONAL_CLUSTER_HOST \
+  --basic-auth $CLUSTER_TOKEN \
+  pin add $ROOT_CID \
+  --no-status
 
 echo "ok! Pin request sent to additional cluster"
 
