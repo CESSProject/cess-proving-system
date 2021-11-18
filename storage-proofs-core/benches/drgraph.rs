@@ -1,5 +1,5 @@
+use cess_hashers::poseidon::PoseidonHasher;
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
-use filecoin_hashers::poseidon::PoseidonHasher;
 use storage_proofs_core::{
     api_version::ApiVersion,
     drgraph::{BucketGraph, Graph, BASE_DEGREE},

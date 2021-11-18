@@ -4,7 +4,7 @@ use std::marker::PhantomData;
 use anyhow::ensure;
 use blstrs::Scalar as Fr;
 use byteorder::{ByteOrder, LittleEndian};
-use filecoin_hashers::{Domain, HashFunction, Hasher};
+use cess_hashers::{Domain, HashFunction, Hasher};
 use generic_array::typenum::Unsigned;
 use log::{error, trace};
 use rayon::prelude::{

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-CMDS=$(cat <<EOF
+CMDS=$(
+    cat <<EOF
 
 set -e
 
@@ -23,13 +24,13 @@ apt-get -y -q install libhwloc-dev > /dev/null 2>&1
 curl https://sh.rustup.rs -sSf | sh -s -- -y > /dev/null 2>&1
 source $HOME/.cargo/env  /dev/null 2>&1
 
-git clone -b $1 --single-branch https://github.com/filecoin-project/rust-fil-proofs.git \$_metrics_dir || true
+git clone -b $1 --single-branch https://github.com/CESSProject/cess-proving-system.git \$_metrics_dir || true
 
 cd \$_metrics_dir
 
-./fil-proofs-tooling/scripts/retry.sh 42 10 60000 \
-    ./fil-proofs-tooling/scripts/with-lock.sh 42 /tmp/metrics.lock \
-    ./fil-proofs-tooling/scripts/with-dots.sh \
+./cess-proofs-tooling/scripts/retry.sh 42 10 60000 \
+    ./cess-proofs-tooling/scripts/with-lock.sh 42 /tmp/metrics.lock \
+    ./cess-proofs-tooling/scripts/with-dots.sh \
     ${@:3}
 EOF
 )

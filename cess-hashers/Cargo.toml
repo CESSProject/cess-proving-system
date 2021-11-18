@@ -1,11 +1,11 @@
 [package]
-name = "filecoin-hashers"
-description = "Hashers used in filecoin and their abstractions."
+name = "cess-hashers"
+description = "Hashers used in CESS and their abstractions."
 version = "5.1.0"
-authors = ["dignifiedquire <dignifiedquire@gmail.com>", "porcuquine <porcuquine@users.noreply.github.com>"]
+authors = []
 license = "MIT OR Apache-2.0"
 edition = "2018"
-repository = "https://github.com/filecoin-project/rust-fil-proofs"
+repository = "https://github.com/CESSProject/cess-proving-system"
 readme = "README.md"
 
 [dependencies]

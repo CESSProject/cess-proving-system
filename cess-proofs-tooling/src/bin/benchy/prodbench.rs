@@ -3,18 +3,18 @@ use std::str::FromStr;
 
 use bellperson::{util_cs::bench_cs::BenchCS, Circuit};
 use blstrs::Scalar as Fr;
+use cess_hashers::sha256::Sha256Hasher;
 use cess_proofs::{
     clear_cache, parameters::public_params, seal_commit_phase1, seal_commit_phase2,
     validate_cache_for_commit, DefaultOctLCTree, DefaultOctTree, PaddedBytesAmount, PoRepConfig,
     PoRepProofPartitions, SectorSize, DRG_DEGREE, EXP_DEGREE, LAYERS, POREP_MINIMUM_CHALLENGES,
     POREP_PARTITIONS,
 };
-use fil_proofs_tooling::{
+use cess_proofs_tooling::{
     measure,
     shared::{create_replicas, PROVER_ID, RANDOMNESS, TICKET_BYTES},
     Metadata,
 };
-use filecoin_hashers::sha256::Sha256Hasher;
 use log::info;
 use rand::SeedableRng;
 use rand_xorshift::XorShiftRng;

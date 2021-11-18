@@ -14,8 +14,8 @@ use cess_proofs::{
     types::{PoStConfig, SectorSize},
     PoStType, PrivateReplicaInfo, WINNING_POST_CHALLENGE_COUNT, WINNING_POST_SECTOR_COUNT,
 };
+use cess_proofs_tooling::shared::{create_replica, PROVER_ID, RANDOMNESS};
 use clap::{arg_enum, value_t, App, Arg};
-use fil_proofs_tooling::shared::{create_replica, PROVER_ID, RANDOMNESS};
 use log::{debug, info};
 use storage_proofs_core::api_version::ApiVersion;
 use storage_proofs_core::sector::SectorId;

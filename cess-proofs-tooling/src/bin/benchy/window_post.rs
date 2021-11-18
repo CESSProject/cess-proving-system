@@ -19,9 +19,12 @@ use cess_proofs::{
     validate_cache_for_commit, validate_cache_for_precommit_phase2, verify_window_post, with_shape,
     PoStType, PrivateReplicaInfo, PublicReplicaInfo,
 };
-use fil_proofs_tooling::measure::FuncMeasurement;
-use fil_proofs_tooling::shared::{PROVER_ID, RANDOMNESS, TICKET_BYTES};
-use fil_proofs_tooling::{measure, Metadata};
+use cess_proofs_tooling::{
+    measure,
+    measure::FuncMeasurement,
+    shared::{PROVER_ID, RANDOMNESS, TICKET_BYTES},
+    Metadata,
+};
 use log::info;
 use serde::{Deserialize, Serialize};
 use storage_proofs_core::api_version::ApiVersion;

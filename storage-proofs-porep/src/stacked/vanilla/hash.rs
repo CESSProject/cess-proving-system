@@ -1,5 +1,5 @@
 use blstrs::Scalar as Fr;
-use filecoin_hashers::{POSEIDON_CONSTANTS_11, POSEIDON_CONSTANTS_2};
+use cess_hashers::{POSEIDON_CONSTANTS_11, POSEIDON_CONSTANTS_2};
 use neptune::poseidon::Poseidon;
 
 /// Hash all elements in the given column.

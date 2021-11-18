@@ -1,18 +1,18 @@
 [package]
-name = "fil-proofs-param"
-description = "Filecoin parameter cli tools."
+name = "cess-proofs-param"
+description = "CESS parameter cli tools."
 version = "5.1.0"
-authors = ["dignifiedquire <dignifiedquire@gmail.com>", "laser <l@s3r.com>", "porcuquine <porcuquine@users.noreply.github.com>"]
+authors = []
 license = "MIT OR Apache-2.0"
 edition = "2018"
-repository = "https://github.com/filecoin-project/rust-fil-proofs"
+repository = "https://github.com/CESSProject/cess-proving-system"
 readme = "README.md"
 
 [dependencies]
 storage-proofs-core = { path = "../storage-proofs-core", version = "^10.0.0", default-features = false}
 storage-proofs-porep = { path = "../storage-proofs-porep", version = "^10.0.0", default-features = false }
 storage-proofs-post = { path = "../storage-proofs-post", version = "^10.0.0", default-features = false }
-filecoin-hashers = { version = "^5.0.0", path = "../filecoin-hashers", default-features = false, features = ["poseidon", "sha256"] }
+cess-hashers = { version = "^5.0.0", path = "../cess-hashers", default-features = false, features = ["poseidon", "sha256"] }
 cess-proofs = { version = "^10.0.0", path = "../cess-proofs", default-features = false }
 bitvec = "0.17"
 rand = "0.8"

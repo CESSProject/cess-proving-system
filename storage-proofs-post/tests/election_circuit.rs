@@ -3,8 +3,8 @@ use std::marker::PhantomData;
 
 use bellperson::{util_cs::test_cs::TestConstraintSystem, Circuit};
 use blstrs::Scalar as Fr;
+use cess_hashers::{poseidon::PoseidonHasher, Domain, HashFunction, Hasher};
 use ff::Field;
-use filecoin_hashers::{poseidon::PoseidonHasher, Domain, HashFunction, Hasher};
 use generic_array::typenum::{U0, U8};
 use rand::SeedableRng;
 use rand_xorshift::XorShiftRng;

@@ -1,7 +1,7 @@
 use std::io::Read;
 
 use anyhow::{ensure, Context};
-use filecoin_hashers::{Domain, Hasher};
+use cess_hashers::{Domain, Hasher};
 use fr32::Fr32Ary;
 use merkletree::merkle::next_pow2;
 
@@ -106,7 +106,7 @@ fn subtree_capacity(pos: usize, total: usize) -> Result<usize> {
 mod tests {
     use super::*;
 
-    use filecoin_hashers::poseidon::PoseidonHasher;
+    use cess_hashers::poseidon::PoseidonHasher;
 
     #[test]
     fn test_subtree_capacity() {

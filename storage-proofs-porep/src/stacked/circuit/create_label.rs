@@ -75,7 +75,7 @@ mod tests {
     use bellperson::util_cs::test_cs::TestConstraintSystem;
     use blstrs::Scalar as Fr;
     use ff::Field;
-    use filecoin_hashers::sha256::Sha256Hasher;
+    use cess_hashers::sha256::Sha256Hasher;
     use fr32::{bytes_into_fr, fr_into_bytes};
     use rand::SeedableRng;
     use rand_xorshift::XorShiftRng;

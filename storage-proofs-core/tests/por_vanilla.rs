@@ -1,10 +1,10 @@
 use std::convert::Into;
 
 use blstrs::Scalar as Fr;
-use ff::Field;
-use filecoin_hashers::{
+use cess_hashers::{
     blake2s::Blake2sHasher, poseidon::PoseidonHasher, sha256::Sha256Hasher, Domain, Hasher,
 };
+use ff::Field;
 use fr32::fr_into_bytes;
 use generic_array::typenum::{U0, U2, U4};
 use rand::SeedableRng;

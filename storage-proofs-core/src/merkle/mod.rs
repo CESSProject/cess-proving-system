@@ -4,7 +4,7 @@ use std::fs::File;
 
 pub use merkletree::store::{DiskStore, ExternalReader, Store};
 
-use filecoin_hashers::Hasher;
+use cess_hashers::Hasher;
 use generic_array::typenum::{U0, U2, U4, U8};
 use merkletree::store::LevelCacheStore;
 

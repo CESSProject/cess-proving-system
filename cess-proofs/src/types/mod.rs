@@ -2,7 +2,7 @@ pub use merkletree::store::StoreConfig;
 pub use storage_proofs_core::merkle::{MerkleProof, MerkleTreeTrait};
 pub use storage_proofs_porep::stacked::{Labels, PersistentAux, TemporaryAux};
 
-use filecoin_hashers::Hasher;
+use cess_hashers::Hasher;
 use serde::{Deserialize, Serialize};
 use storage_proofs_core::{merkle::BinaryMerkleTree, sector::SectorId};
 use storage_proofs_porep::stacked;

@@ -7,8 +7,11 @@ use cess_proofs::{
     types::PoStConfig,
     verify_winning_post, with_shape, PoStType,
 };
-use fil_proofs_tooling::shared::{create_replica, PROVER_ID, RANDOMNESS};
-use fil_proofs_tooling::{measure, Metadata};
+use cess_proofs_tooling::{
+    measure,
+    shared::{create_replica, PROVER_ID, RANDOMNESS},
+    Metadata,
+};
 use log::info;
 use serde::Serialize;
 use storage_proofs_core::api_version::ApiVersion;

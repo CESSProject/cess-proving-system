@@ -2,7 +2,7 @@ use std::marker::PhantomData;
 use std::path::PathBuf;
 
 use anyhow::{ensure, Context};
-use filecoin_hashers::{Domain, HashFunction, Hasher, PoseidonArity};
+use cess_hashers::{Domain, HashFunction, Hasher, PoseidonArity};
 use fr32::bytes_into_fr_repr_safe;
 use generic_array::typenum::U2;
 use merkletree::store::{ReplicaConfig, StoreConfig};

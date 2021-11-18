@@ -1,5 +1,5 @@
 use blstrs::Scalar as Fr;
-use filecoin_hashers::Hasher;
+use cess_hashers::Hasher;
 use log::trace;
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use storage_proofs_core::{error::Result, merkle::MerkleProofTrait};

@@ -2,7 +2,7 @@ use std::fs::remove_file;
 
 use blstrs::Scalar as Fr;
 use ff::{Field, PrimeField};
-use filecoin_hashers::{
+use cess_hashers::{
     blake2s::Blake2sHasher, poseidon::PoseidonHasher, sha256::Sha256Hasher, Domain, Hasher,
 };
 use fr32::fr_into_bytes;

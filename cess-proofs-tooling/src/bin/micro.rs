@@ -1,8 +1,8 @@
 use std::io::{self, BufRead};
 
 use anyhow::{anyhow, Context, Result};
+use cess_proofs_tooling::metadata::Metadata;
 use commandspec::command;
-use fil_proofs_tooling::metadata::Metadata;
 use regex::Regex;
 use serde::Serialize;
 

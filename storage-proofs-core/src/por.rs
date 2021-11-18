@@ -1,7 +1,7 @@
 use std::marker::PhantomData;
 
 use anyhow::ensure;
-use filecoin_hashers::{Domain, Hasher};
+use cess_hashers::{Domain, Hasher};
 use serde::{Deserialize, Serialize};
 
 use crate::{

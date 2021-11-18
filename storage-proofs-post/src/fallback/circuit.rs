@@ -1,7 +1,7 @@
 use bellperson::{gadgets::num::AllocatedNum, Circuit, ConstraintSystem, SynthesisError};
 use blstrs::Scalar as Fr;
+use cess_hashers::{HashFunction, Hasher};
 use ff::Field;
-use filecoin_hashers::{HashFunction, Hasher};
 use rayon::prelude::{ParallelIterator, ParallelSlice};
 use storage_proofs_core::{
     compound_proof::CircuitComponent,

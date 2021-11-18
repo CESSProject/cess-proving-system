@@ -3,7 +3,7 @@ use std::marker::PhantomData;
 use std::path::{Path, PathBuf};
 
 use anyhow::Context;
-use filecoin_hashers::{Domain, Hasher};
+use cess_hashers::{Domain, Hasher};
 use fr32::bytes_into_fr_repr_safe;
 use generic_array::typenum::{Unsigned, U2};
 use log::trace;

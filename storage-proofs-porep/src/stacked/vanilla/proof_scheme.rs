@@ -1,5 +1,5 @@
 use anyhow::ensure;
-use filecoin_hashers::{HashFunction, Hasher};
+use cess_hashers::{HashFunction, Hasher};
 use log::trace;
 use rayon::prelude::{IndexedParallelIterator, IntoParallelRefIterator, ParallelIterator};
 use storage_proofs_core::{

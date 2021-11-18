@@ -4,7 +4,7 @@ use std::path::Path;
 
 use anyhow::{Context, Result};
 use bincode::serialize;
-use filecoin_hashers::{Domain, Hasher};
+use cess_hashers::{Domain, Hasher};
 use rand::{thread_rng, Rng};
 use storage_proofs_core::{cache_key::CacheKey, merkle::MerkleTreeTrait};
 use storage_proofs_porep::stacked::StackedDrg;

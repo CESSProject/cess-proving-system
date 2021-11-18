@@ -4,7 +4,7 @@ use std::path::{Path, PathBuf};
 
 use anyhow::{ensure, Context, Result};
 use bincode::deserialize;
-use filecoin_hashers::Hasher;
+use cess_hashers::Hasher;
 use fr32::{write_unpadded, Fr32Reader};
 use log::{info, trace};
 use memmap::MmapOptions;

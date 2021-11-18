@@ -6,7 +6,7 @@ use bellperson::{
 };
 use blstrs::Scalar as Fr;
 use ff::PrimeField;
-use filecoin_hashers::Hasher;
+use cess_hashers::Hasher;
 use storage_proofs_core::{
     compound_proof::CircuitComponent,
     error::Result,

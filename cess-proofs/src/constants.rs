@@ -4,7 +4,7 @@ use std::sync::RwLock;
 pub use storage_proofs_core::drgraph::BASE_DEGREE as DRG_DEGREE;
 pub use storage_proofs_porep::stacked::EXP_DEGREE;
 
-use filecoin_hashers::{poseidon::PoseidonHasher, sha256::Sha256Hasher, Hasher};
+use cess_hashers::{poseidon::PoseidonHasher, sha256::Sha256Hasher, Hasher};
 use lazy_static::lazy_static;
 use storage_proofs_core::{
     merkle::{BinaryMerkleTree, LCTree, OctLCMerkleTree, OctMerkleTree},

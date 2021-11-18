@@ -6,7 +6,7 @@ use std::path::{Path, PathBuf};
 
 use anyhow::{ensure, Context, Result};
 use bincode::deserialize;
-use filecoin_hashers::Hasher;
+use cess_hashers::Hasher;
 use generic_array::typenum::Unsigned;
 use log::trace;
 use merkletree::store::StoreConfig;

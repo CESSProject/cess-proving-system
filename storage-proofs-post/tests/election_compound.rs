@@ -4,7 +4,7 @@ use bellperson::{
     util_cs::{metric_cs::MetricCS, test_cs::TestConstraintSystem},
     Circuit,
 };
-use filecoin_hashers::{poseidon::PoseidonHasher, Domain, HashFunction, Hasher};
+use cess_hashers::{poseidon::PoseidonHasher, Domain, HashFunction, Hasher};
 use generic_array::typenum::{U0, U8};
 use rand::SeedableRng;
 use rand_xorshift::XorShiftRng;

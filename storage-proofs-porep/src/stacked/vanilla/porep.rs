@@ -1,6 +1,6 @@
 use std::path::PathBuf;
 
-use filecoin_hashers::Hasher;
+use cess_hashers::Hasher;
 use merkletree::store::StoreConfig;
 use storage_proofs_core::{
     error::Result,

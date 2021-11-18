@@ -11,7 +11,7 @@ use bellperson::{
     Circuit, ConstraintSystem, SynthesisError,
 };
 use blstrs::Scalar as Fr;
-use filecoin_hashers::{HashFunction, Hasher, PoseidonArity};
+use cess_hashers::{HashFunction, Hasher, PoseidonArity};
 use generic_array::typenum::Unsigned;
 
 use crate::{
@@ -515,10 +515,10 @@ mod tests {
     use super::*;
 
     use bellperson::util_cs::{metric_cs::MetricCS, test_cs::TestConstraintSystem};
-    use ff::Field;
-    use filecoin_hashers::{
+    use cess_hashers::{
         blake2s::Blake2sHasher, poseidon::PoseidonHasher, sha256::Sha256Hasher, Domain,
     };
+    use ff::Field;
     use fr32::{bytes_into_fr, fr_into_bytes};
     use generic_array::typenum::{U0, U2, U4, U8};
     use merkletree::store::VecStore;

@@ -462,8 +462,8 @@ workflows:
             - ensure_groth_parameters_and_keys_linux
 
       - test:
-          name: test_fil_proofs_tooling
-          crate: 'fil-proofs-tooling'
+          name: test_cess_proofs_tooling
+          crate: 'cess-proofs-tooling'
           requires:
             - cargo_fetch
             - ensure_groth_parameters_and_keys_linux
@@ -476,15 +476,15 @@ workflows:
             - ensure_groth_parameters_and_keys_linux
 
       - test:
-          name: test_filecoin_hashers
-          crate: 'filecoin-hashers'
+          name: test_cess_hashers
+          crate: 'cess-hashers'
           requires:
             - cargo_fetch
             - ensure_groth_parameters_and_keys_linux
 
       - test:
-          name: test_fil_proofs_param
-          crate: 'fil-proofs-param'
+          name: test_cess_proofs_param
+          crate: 'cess-proofs-param'
           requires:
             - cargo_fetch
             - ensure_groth_parameters_and_keys_linux

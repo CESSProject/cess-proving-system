@@ -1,6 +1,6 @@
 use std::marker::PhantomData;
 
-use filecoin_hashers::Hasher;
+use cess_hashers::Hasher;
 use fr32::bytes_into_fr_repr_safe;
 use log::trace;
 use serde::{Deserialize, Serialize};

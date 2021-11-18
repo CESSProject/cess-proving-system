@@ -10,7 +10,7 @@ use std::time::Duration;
 
 use anyhow::{Context, Result};
 use byte_slice_cast::{AsByteSlice, AsMutSliceOf};
-use filecoin_hashers::Hasher;
+use cess_hashers::Hasher;
 use generic_array::{
     typenum::{Unsigned, U64},
     GenericArray,
@@ -637,7 +637,7 @@ mod tests {
 
     use blstrs::Scalar as Fr;
     use ff::PrimeField;
-    use filecoin_hashers::poseidon::PoseidonHasher;
+    use cess_hashers::poseidon::PoseidonHasher;
     use generic_array::typenum::{U0, U2, U8};
     use storage_proofs_core::{api_version::ApiVersion, merkle::LCTree};
     use tempfile::tempdir;

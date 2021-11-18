@@ -1,4 +1,4 @@
-# fil-proofs-tooling
+# cess-proofs-tooling
 
 This crate contains the following binaries
 
@@ -90,7 +90,7 @@ To run benchy on a remote server, provide SSH connection information to the
 benchy-remote.sh script:
 
 ```shell
-10:13 $ ./fil-proofs-tooling/scripts/benchy-remote.sh master foo@16.16.16.16 stacked --size=1 | jq '.'
+10:13 $ ./cess-proofs-tooling/scripts/benchy-remote.sh master foo@16.16.16.16 stacked --size=1 | jq '.'
 {
   "inputs": {
     // ...
@@ -185,7 +185,6 @@ Run benchy in "prodbench" mode with custom input and detailed metrics.
   }
 }
 ```
-
 
 ## `micro`
 

@@ -6,7 +6,7 @@ use std::slice::Iter;
 
 use anyhow::{ensure, Result};
 use blstrs::Scalar as Fr;
-use filecoin_hashers::{Hasher, PoseidonArity};
+use cess_hashers::{Hasher, PoseidonArity};
 use generic_array::typenum::{Unsigned, U0};
 use merkletree::hash::Algorithm;
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
@@ -699,7 +699,7 @@ impl<
 mod tests {
     use super::*;
 
-    use filecoin_hashers::{
+    use cess_hashers::{
         blake2s::Blake2sHasher, poseidon::PoseidonHasher, sha256::Sha256Hasher, Domain,
     };
     use generic_array::typenum::{U2, U4, U8};

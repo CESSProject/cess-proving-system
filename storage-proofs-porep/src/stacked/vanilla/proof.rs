@@ -8,7 +8,7 @@ use std::sync::Mutex;
 use anyhow::Context;
 use bincode::deserialize;
 use fdlimit::raise_fd_limit;
-use filecoin_hashers::{poseidon::PoseidonHasher, Domain, HashFunction, Hasher, PoseidonArity};
+use cess_hashers::{poseidon::PoseidonHasher, Domain, HashFunction, Hasher, PoseidonArity};
 use generic_array::typenum::{Unsigned, U0, U11, U2, U8};
 use lazy_static::lazy_static;
 use log::{error, info, trace, warn};

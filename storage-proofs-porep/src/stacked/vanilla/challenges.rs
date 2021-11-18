@@ -1,4 +1,4 @@
-use filecoin_hashers::Domain;
+use cess_hashers::Domain;
 use num_bigint::BigUint;
 use num_traits::cast::ToPrimitive;
 use serde::{Deserialize, Serialize};
@@ -81,7 +81,7 @@ mod test {
 
     use std::collections::HashMap;
 
-    use filecoin_hashers::sha256::Sha256Domain;
+    use cess_hashers::sha256::Sha256Domain;
     use rand::{thread_rng, Rng};
 
     #[test]

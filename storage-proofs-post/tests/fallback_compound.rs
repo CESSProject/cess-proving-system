@@ -2,7 +2,7 @@ use bellperson::{
     util_cs::{metric_cs::MetricCS, test_cs::TestConstraintSystem},
     Circuit,
 };
-use filecoin_hashers::{poseidon::PoseidonHasher, Domain, HashFunction, Hasher};
+use cess_hashers::{poseidon::PoseidonHasher, Domain, HashFunction, Hasher};
 use generic_array::typenum::{U0, U2, U4, U8};
 use pretty_assertions::assert_eq;
 use rand::SeedableRng;

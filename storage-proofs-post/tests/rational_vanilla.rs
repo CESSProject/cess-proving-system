@@ -1,6 +1,6 @@
 use std::collections::BTreeMap;
 
-use filecoin_hashers::{
+use cess_hashers::{
     blake2s::Blake2sHasher, poseidon::PoseidonHasher, sha256::Sha256Hasher, Domain, HashFunction,
     Hasher,
 };

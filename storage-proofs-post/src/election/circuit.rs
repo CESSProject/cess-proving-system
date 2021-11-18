@@ -2,8 +2,8 @@ use std::marker::PhantomData;
 
 use bellperson::{gadgets::num::AllocatedNum, Circuit, ConstraintSystem, SynthesisError};
 use blstrs::Scalar as Fr;
+use cess_hashers::{poseidon::PoseidonFunction, HashFunction, Hasher, PoseidonMDArity};
 use ff::Field;
-use filecoin_hashers::{poseidon::PoseidonFunction, HashFunction, Hasher, PoseidonMDArity};
 use generic_array::typenum::Unsigned;
 use storage_proofs_core::{
     compound_proof::CircuitComponent,

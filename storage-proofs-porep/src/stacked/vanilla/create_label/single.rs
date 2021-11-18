@@ -2,7 +2,7 @@ use std::marker::PhantomData;
 use std::mem;
 
 use anyhow::{Context, Result};
-use filecoin_hashers::Hasher;
+use cess_hashers::Hasher;
 use generic_array::typenum::Unsigned;
 use log::info;
 use merkletree::store::{DiskStore, Store, StoreConfig};

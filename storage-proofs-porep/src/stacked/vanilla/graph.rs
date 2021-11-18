@@ -3,7 +3,7 @@ use std::fmt::{self, Debug, Formatter};
 use std::marker::PhantomData;
 
 use anyhow::ensure;
-use filecoin_hashers::Hasher;
+use cess_hashers::Hasher;
 use log::info;
 use sha2raw::Sha256;
 use storage_proofs_core::{
@@ -454,7 +454,7 @@ mod tests {
 
     use std::collections::HashSet;
 
-    use filecoin_hashers::poseidon::PoseidonHasher;
+    use cess_hashers::poseidon::PoseidonHasher;
 
     // Test that 3 (or more) rounds of the Feistel cipher can be used
     // as a pseudorandom permutation, that is, each input will be mapped

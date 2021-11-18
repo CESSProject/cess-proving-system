@@ -5,7 +5,7 @@ use std::marker::PhantomData;
 use std::ops::{Deref, DerefMut};
 
 use anyhow::Result;
-use filecoin_hashers::{Hasher, PoseidonArity};
+use cess_hashers::{Hasher, PoseidonArity};
 use generic_array::typenum::U0;
 use merkletree::{
     hash::Hashable,

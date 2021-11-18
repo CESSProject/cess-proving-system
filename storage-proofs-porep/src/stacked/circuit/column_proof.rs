@@ -1,6 +1,6 @@
 use bellperson::{ConstraintSystem, SynthesisError};
 use blstrs::Scalar as Fr;
-use filecoin_hashers::{Hasher, PoseidonArity};
+use cess_hashers::{Hasher, PoseidonArity};
 use storage_proofs_core::{
     drgraph::Graph,
     gadgets::por::AuthPath,

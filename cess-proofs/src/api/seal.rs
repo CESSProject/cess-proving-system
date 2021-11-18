@@ -6,7 +6,7 @@ use anyhow::{ensure, Context, Result};
 use bellperson::groth16;
 use bincode::{deserialize, serialize};
 use blstrs::{Bls12, Scalar as Fr};
-use filecoin_hashers::{Domain, Hasher};
+use cess_hashers::{Domain, Hasher};
 use log::{info, trace};
 use memmap::MmapOptions;
 use merkletree::store::{DiskStore, Store, StoreConfig};

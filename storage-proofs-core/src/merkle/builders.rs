@@ -5,7 +5,7 @@ use std::mem::size_of;
 use std::path::PathBuf;
 
 use anyhow::ensure;
-use filecoin_hashers::{Domain, Hasher, PoseidonArity};
+use cess_hashers::{Domain, Hasher, PoseidonArity};
 use generic_array::typenum::{Unsigned, U0};
 use log::trace;
 use merkletree::{

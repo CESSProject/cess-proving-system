@@ -5,7 +5,7 @@ use bellperson::{
     ConstraintSystem, SynthesisError,
 };
 use blstrs::Scalar as Fr;
-use filecoin_hashers::{Hasher, PoseidonArity};
+use cess_hashers::{Hasher, PoseidonArity};
 use generic_array::typenum::{U0, U2};
 use storage_proofs_core::{
     drgraph::Graph,

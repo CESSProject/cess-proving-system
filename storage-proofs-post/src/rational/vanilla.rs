@@ -4,7 +4,7 @@ use std::marker::PhantomData;
 use anyhow::{bail, ensure, Context};
 use blake2b_simd::blake2b;
 use byteorder::{ByteOrder, LittleEndian};
-use filecoin_hashers::{Domain, HashFunction, Hasher};
+use cess_hashers::{Domain, HashFunction, Hasher};
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use storage_proofs_core::{
     error::{Error, Result},

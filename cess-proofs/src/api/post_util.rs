@@ -4,7 +4,7 @@ use std::path::Path;
 
 use anyhow::{anyhow, ensure, Context, Result};
 use bincode::deserialize;
-use filecoin_hashers::Hasher;
+use cess_hashers::Hasher;
 use log::{debug, info};
 use storage_proofs_core::{
     cache_key::CacheKey, merkle::MerkleTreeTrait, proof::ProofScheme, sector::SectorId,

@@ -4,7 +4,7 @@ use bellperson::{
 };
 use blstrs::Scalar as Fr;
 use ff::Field;
-use filecoin_hashers::{poseidon::PoseidonHasher, Hasher};
+use cess_hashers::{poseidon::PoseidonHasher, Hasher};
 use fr32::fr_into_bytes;
 use merkletree::store::StoreConfig;
 use pretty_assertions::assert_eq;

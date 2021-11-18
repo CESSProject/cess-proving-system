@@ -3,7 +3,7 @@ use std::marker::PhantomData;
 use anyhow::{ensure, Context};
 use bellperson::Circuit;
 use blstrs::Scalar as Fr;
-use filecoin_hashers::Hasher;
+use cess_hashers::Hasher;
 use generic_array::typenum;
 use storage_proofs_core::{
     compound_proof::{CircuitComponent, CompoundProof},

@@ -5,7 +5,7 @@ use std::marker::PhantomData;
 use anyhow::{bail, ensure, Context};
 use blstrs::Scalar as Fr;
 use byteorder::{ByteOrder, LittleEndian};
-use filecoin_hashers::{
+use cess_hashers::{
     poseidon::{PoseidonDomain, PoseidonFunction},
     Domain, HashFunction, Hasher, PoseidonMDArity,
 };

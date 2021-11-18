@@ -2,7 +2,7 @@ use std::marker::PhantomData;
 
 use bellperson::{gadgets::num::AllocatedNum, Circuit, ConstraintSystem, SynthesisError};
 use blstrs::Scalar as Fr;
-use filecoin_hashers::{HashFunction, Hasher};
+use cess_hashers::{HashFunction, Hasher};
 use storage_proofs_core::{
     compound_proof::CircuitComponent, error::Result, gadgets::constraint, gadgets::por::PoRCircuit,
     gadgets::variables::Root, merkle::MerkleTreeTrait,

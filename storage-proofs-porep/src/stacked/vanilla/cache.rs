@@ -6,7 +6,7 @@ use std::sync::Mutex;
 
 use anyhow::{bail, ensure, Context};
 use byteorder::{ByteOrder, LittleEndian};
-use filecoin_hashers::Hasher;
+use cess_hashers::Hasher;
 use lazy_static::lazy_static;
 use log::{info, trace};
 use mapr::{Mmap, MmapOptions};
@@ -453,7 +453,7 @@ mod tests {
 
     use std::sync::Once;
 
-    use filecoin_hashers::poseidon::PoseidonHasher;
+    use cess_hashers::poseidon::PoseidonHasher;
     use storage_proofs_core::api_version::ApiVersion;
 
     use crate::stacked::vanilla::graph::{StackedBucketGraph, EXP_DEGREE};

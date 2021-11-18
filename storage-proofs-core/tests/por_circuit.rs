@@ -4,10 +4,10 @@ use bellperson::{
     Circuit, ConstraintSystem,
 };
 use blstrs::Scalar as Fr;
-use ff::Field;
-use filecoin_hashers::{
+use cess_hashers::{
     blake2s::Blake2sHasher, poseidon::PoseidonHasher, sha256::Sha256Hasher, Domain, Hasher,
 };
+use ff::Field;
 use fr32::{bytes_into_fr, fr_into_bytes};
 use generic_array::typenum::{Unsigned, U0, U2, U4, U8};
 use merkletree::store::VecStore;

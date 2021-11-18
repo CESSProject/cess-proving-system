@@ -5,7 +5,7 @@ use std::iter::Iterator;
 use std::sync::Mutex;
 
 use anyhow::{ensure, Context, Result};
-use filecoin_hashers::{HashFunction, Hasher};
+use cess_hashers::{HashFunction, Hasher};
 use fr32::Fr32Reader;
 use lazy_static::lazy_static;
 use log::trace;

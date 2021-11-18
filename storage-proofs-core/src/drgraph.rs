@@ -3,7 +3,7 @@ use std::fmt::Debug;
 use std::marker::PhantomData;
 
 use anyhow::ensure;
-use filecoin_hashers::{Hasher, PoseidonArity};
+use cess_hashers::{Hasher, PoseidonArity};
 use fr32::bytes_into_fr_repr_safe;
 use generic_array::typenum::Unsigned;
 use merkletree::merkle::get_merkle_tree_row_count;
@@ -255,7 +255,7 @@ pub fn derive_drg_seed(porep_id: PoRepID) -> [u8; 28] {
 mod tests {
     use super::*;
 
-    use filecoin_hashers::{
+    use cess_hashers::{
         blake2s::Blake2sHasher, poseidon::PoseidonHasher, sha256::Sha256Hasher,
     };
     use generic_array::typenum::{U0, U2, U4, U8};

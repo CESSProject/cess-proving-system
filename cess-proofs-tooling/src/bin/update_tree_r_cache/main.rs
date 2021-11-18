@@ -9,7 +9,7 @@ use cess_proofs::{
     SectorShapeSub8, SectorShapeTop2, OCT_ARITY,
 };
 use clap::{value_t, App, Arg, SubCommand};
-use filecoin_hashers::Hasher;
+use cess_hashers::Hasher;
 use generic_array::typenum::Unsigned;
 use memmap::MmapOptions;
 use merkletree::{

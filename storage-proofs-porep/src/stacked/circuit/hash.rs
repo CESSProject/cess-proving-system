@@ -1,6 +1,6 @@
 use bellperson::{gadgets::num::AllocatedNum, ConstraintSystem, SynthesisError};
 use blstrs::Scalar as Fr;
-use filecoin_hashers::{POSEIDON_CONSTANTS_11, POSEIDON_CONSTANTS_2};
+use cess_hashers::{POSEIDON_CONSTANTS_11, POSEIDON_CONSTANTS_2};
 use generic_array::typenum::{U11, U2};
 use neptune::circuit::poseidon_hash;
 
@@ -25,7 +25,7 @@ mod tests {
 
     use bellperson::util_cs::test_cs::TestConstraintSystem;
     use ff::Field;
-    use filecoin_hashers::{poseidon::PoseidonHasher, HashFunction, Hasher};
+    use cess_hashers::{poseidon::PoseidonHasher, HashFunction, Hasher};
     use rand::SeedableRng;
     use rand_xorshift::XorShiftRng;
     use storage_proofs_core::TEST_SEED;

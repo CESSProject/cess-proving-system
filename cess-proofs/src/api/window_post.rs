@@ -1,7 +1,7 @@
 use std::collections::BTreeMap;
 
 use anyhow::{ensure, Context, Result};
-use filecoin_hashers::Hasher;
+use cess_hashers::Hasher;
 use log::info;
 use storage_proofs_core::{
     compound_proof::{self, CompoundProof},

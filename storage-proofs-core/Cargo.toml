@@ -1,18 +1,18 @@
 [package]
 name = "storage-proofs-core"
 version = "10.1.0"
-authors = ["dignifiedquire <me@dignifiedquire.com>"]
+authors = []
 description = "Core parts for proofs of storage"
 license = "MIT OR Apache-2.0"
 edition = "2018"
-repository = "https://github.com/filecoin-project/rust-fil-proofs"
+repository = "https://github.com/CESSProject/cess-proving-system"
 readme = "README.md"
 
 [lib]
 bench = false
 
 [dependencies]
-filecoin-hashers = { path = "../filecoin-hashers", version = "^5.0.0", default-features = false, features = ["sha256", "poseidon"] }
+cess-hashers = { path = "../cess-hashers", version = "^5.0.0", default-features = false, features = ["sha256", "poseidon"] }
 rand = "0.8"
 merkletree = "0.21.0"
 byteorder = "1"
@@ -55,7 +55,7 @@ bitvec = "0.17"
 rand_xorshift = "0.3.0"
 pretty_assertions = "0.6.1"
 sha2raw = { path = "../sha2raw", version = "^5.0.0"}
-filecoin-hashers = { path = "../filecoin-hashers", version = "^5.0.0", default-features = false, features = ["blake2s", "sha256", "poseidon"] }
+cess-hashers = { path = "../cess-hashers", version = "^5.0.0", default-features = false, features = ["blake2s", "sha256", "poseidon"] }
 
 [features]
 default = ["opencl"]
@@ -65,8 +65,8 @@ big-sector-sizes-bench = []
 measurements = ["cpu-time", "gperftools"]
 profile = ["measurements"]
 
-cuda = ["bellperson/cuda", "neptune/cuda", "filecoin-hashers/cuda", "fr32/cuda"]
-opencl = ["bellperson/opencl", "neptune/opencl", "filecoin-hashers/opencl", "fr32/opencl"]
+cuda = ["bellperson/cuda", "neptune/cuda", "cess-hashers/cuda", "fr32/cuda"]
+opencl = ["bellperson/opencl", "neptune/opencl", "cess-hashers/opencl", "fr32/opencl"]
 
 [[bench]]
 name = "sha256"

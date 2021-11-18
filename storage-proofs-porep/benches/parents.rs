@@ -1,5 +1,5 @@
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
-use filecoin_hashers::{blake2s::Blake2sHasher, sha256::Sha256Hasher, Hasher};
+use cess_hashers::{blake2s::Blake2sHasher, sha256::Sha256Hasher, Hasher};
 #[cfg(feature = "cpu-profile")]
 use gperftools::profiler::PROFILER;
 use storage_proofs_core::{

@@ -184,8 +184,8 @@ mod tests {
 
     use bellperson::{gadgets::num::AllocatedNum, util_cs::test_cs::TestConstraintSystem};
     use blstrs::Scalar as Fr;
+    use cess_hashers::{sha256::Sha256Function, HashFunction};
     use ff::Field;
-    use filecoin_hashers::{sha256::Sha256Function, HashFunction};
     use fr32::fr_into_bytes;
     use merkletree::hash::Algorithm;
     use rand::{Rng, SeedableRng};

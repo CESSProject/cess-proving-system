@@ -2,7 +2,7 @@ use std::fs::{self, create_dir_all, remove_file, rename, File};
 use std::io::{self, BufReader};
 
 use anyhow::Context;
-use filecoin_hashers::Hasher;
+use cess_hashers::Hasher;
 use log::{info, warn};
 use merkletree::{merkle::Element, store::StoreConfig};
 use storage_proofs_core::{

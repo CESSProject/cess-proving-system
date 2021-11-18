@@ -2,7 +2,7 @@ use std::cmp::min;
 use std::io::{self, Read};
 
 use anyhow::{ensure, Result};
-use filecoin_hashers::{HashFunction, Hasher};
+use cess_hashers::{HashFunction, Hasher};
 use rayon::prelude::{ParallelIterator, ParallelSlice};
 
 use crate::{constants::DefaultPieceHasher, pieces::piece_hash};

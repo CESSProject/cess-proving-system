@@ -1,6 +1,6 @@
 use blstrs::Scalar as Fr;
 use ff::Field;
-use filecoin_hashers::{blake2s::Blake2sHasher, sha256::Sha256Hasher, Domain, Hasher};
+use cess_hashers::{blake2s::Blake2sHasher, sha256::Sha256Hasher, Domain, Hasher};
 use fr32::fr_into_bytes;
 use merkletree::store::StoreConfig;
 use pretty_assertions::assert_eq;

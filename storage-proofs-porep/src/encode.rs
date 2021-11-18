@@ -1,5 +1,5 @@
 use blstrs::Scalar as Fr;
-use filecoin_hashers::Domain;
+use cess_hashers::Domain;
 
 pub fn encode<T: Domain>(key: T, value: T) -> T {
     let mut result: Fr = value.into();

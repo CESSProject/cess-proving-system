@@ -1,8 +1,8 @@
 use anyhow::Result;
-use criterion::{black_box, criterion_group, criterion_main, Criterion};
-use filecoin_hashers::{
+use cess_hashers::{
     poseidon::PoseidonDomain, poseidon::PoseidonHasher, sha256::Sha256Hasher, Domain,
 };
+use criterion::{black_box, criterion_group, criterion_main, Criterion};
 use rand::{thread_rng, Rng};
 use storage_proofs_core::merkle::{create_base_merkle_tree, BinaryMerkleTree};
 

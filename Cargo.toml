@@ -1,13 +1,13 @@
 [workspace]
 
 members = [
+  "cess-hashers",
   "cess-proofs",
+  "cess-proofs-param",
+  "cess-proofs-tooling",
   "storage-proofs-core",
   "storage-proofs-porep",
   "storage-proofs-post",
-  "fil-proofs-tooling",
-  "fil-proofs-param",
   "fr32",
   "sha2raw",
-  "filecoin-hashers",
 ]

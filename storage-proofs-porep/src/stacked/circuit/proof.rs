@@ -3,7 +3,7 @@ use std::marker::PhantomData;
 use anyhow::ensure;
 use bellperson::{gadgets::num::AllocatedNum, Circuit, ConstraintSystem, SynthesisError};
 use blstrs::Scalar as Fr;
-use filecoin_hashers::{HashFunction, Hasher};
+use cess_hashers::{HashFunction, Hasher};
 use fr32::u64_into_fr;
 use storage_proofs_core::{
     compound_proof::{CircuitComponent, CompoundProof},

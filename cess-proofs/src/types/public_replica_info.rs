@@ -2,7 +2,7 @@ use std::cmp::Ordering;
 use std::hash::Hash;
 
 use anyhow::{ensure, Result};
-use filecoin_hashers::Domain;
+use cess_hashers::Domain;
 
 use crate::{api::as_safe_commitment, types::Commitment};
 

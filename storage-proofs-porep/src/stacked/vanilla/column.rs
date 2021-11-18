@@ -1,7 +1,7 @@
 use std::marker::PhantomData;
 
 use blstrs::Scalar as Fr;
-use filecoin_hashers::Hasher;
+use cess_hashers::Hasher;
 use serde::{Deserialize, Serialize};
 use storage_proofs_core::{
     error::Result,
