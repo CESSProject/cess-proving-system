@@ -1,7 +1,12 @@
 use bellperson::{util_cs::test_cs::TestConstraintSystem, ConstraintSystem};
 use blstrs::Scalar as Fr;
-use ff::Field;
 use cess_hashers::poseidon::PoseidonHasher;
+use cess_sp_porep::{
+    drg::{self, DrgPoRep, DrgPoRepCircuit, DrgPoRepCompound},
+    stacked::BINARY_ARITY,
+    PoRep,
+};
+use ff::Field;
 use fr32::{bytes_into_fr, fr_into_bytes};
 use generic_array::typenum::U2;
 use merkletree::store::StoreConfig;
@@ -19,11 +24,6 @@ use storage_proofs_core::{
     test_helper::setup_replica,
     util::{data_at_node, default_rows_to_discard},
     TEST_SEED,
-};
-use storage_proofs_porep::{
-    drg::{self, DrgPoRep, DrgPoRepCircuit, DrgPoRepCompound},
-    stacked::BINARY_ARITY,
-    PoRep,
 };
 use tempfile::tempdir;
 

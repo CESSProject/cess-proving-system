@@ -1,12 +1,12 @@
-use criterion::{black_box, criterion_group, criterion_main, Criterion};
 use cess_hashers::{blake2s::Blake2sHasher, sha256::Sha256Hasher, Hasher};
+use cess_sp_porep::stacked::{StackedBucketGraph, EXP_DEGREE};
+use criterion::{black_box, criterion_group, criterion_main, Criterion};
 #[cfg(feature = "cpu-profile")]
 use gperftools::profiler::PROFILER;
 use storage_proofs_core::{
     api_version::ApiVersion,
     drgraph::{Graph, BASE_DEGREE},
 };
-use storage_proofs_porep::stacked::{StackedBucketGraph, EXP_DEGREE};
 
 #[cfg(feature = "cpu-profile")]
 #[inline(always)]

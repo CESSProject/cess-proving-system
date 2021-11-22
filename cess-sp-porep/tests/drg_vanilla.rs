@@ -1,6 +1,11 @@
 use blstrs::Scalar as Fr;
-use ff::Field;
 use cess_hashers::{blake2s::Blake2sHasher, sha256::Sha256Hasher, Domain, Hasher};
+use cess_sp_porep::{
+    drg::{self, DrgPoRep},
+    stacked::BINARY_ARITY,
+    PoRep,
+};
+use ff::Field;
 use fr32::fr_into_bytes;
 use merkletree::store::StoreConfig;
 use pretty_assertions::assert_eq;
@@ -16,11 +21,6 @@ use storage_proofs_core::{
     test_helper::setup_replica,
     util::default_rows_to_discard,
     TEST_SEED,
-};
-use storage_proofs_porep::{
-    drg::{self, DrgPoRep},
-    stacked::BINARY_ARITY,
-    PoRep,
 };
 use tempfile::tempdir;
 

@@ -3,8 +3,15 @@ use bellperson::{
     Circuit, ConstraintSystem,
 };
 use blstrs::Scalar as Fr;
-use ff::Field;
 use cess_hashers::{poseidon::PoseidonHasher, sha256::Sha256Hasher, Hasher};
+use cess_sp_porep::{
+    stacked::{
+        LayerChallenges, PrivateInputs, PublicInputs, SetupParams, StackedCompound, StackedDrg,
+        TemporaryAux, TemporaryAuxCache, BINARY_ARITY, EXP_DEGREE,
+    },
+    PoRep,
+};
+use ff::Field;
 use fr32::fr_into_bytes;
 use generic_array::typenum::{U0, U2, U4, U8};
 use merkletree::store::StoreConfig;
@@ -20,13 +27,6 @@ use storage_proofs_core::{
     test_helper::setup_replica,
     util::default_rows_to_discard,
     TEST_SEED,
-};
-use storage_proofs_porep::{
-    stacked::{
-        LayerChallenges, PrivateInputs, PublicInputs, SetupParams, StackedCompound, StackedDrg,
-        TemporaryAux, TemporaryAuxCache, BINARY_ARITY, EXP_DEGREE,
-    },
-    PoRep,
 };
 use tempfile::tempdir;
 

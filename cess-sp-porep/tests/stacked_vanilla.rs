@@ -1,10 +1,17 @@
 use std::fs::remove_file;
 
 use blstrs::Scalar as Fr;
-use ff::{Field, PrimeField};
 use cess_hashers::{
     blake2s::Blake2sHasher, poseidon::PoseidonHasher, sha256::Sha256Hasher, Domain, Hasher,
 };
+use cess_sp_porep::{
+    stacked::{
+        LayerChallenges, PrivateInputs, PublicInputs, SetupParams, StackedBucketGraph, StackedDrg,
+        TemporaryAux, TemporaryAuxCache, BINARY_ARITY, EXP_DEGREE,
+    },
+    PoRep,
+};
+use ff::{Field, PrimeField};
 use fr32::fr_into_bytes;
 use generic_array::typenum::{U0, U2, U4, U8};
 use glob::glob;
@@ -21,13 +28,6 @@ use storage_proofs_core::{
     test_helper::setup_replica,
     util::{default_rows_to_discard, NODE_SIZE},
     TEST_SEED,
-};
-use storage_proofs_porep::{
-    stacked::{
-        LayerChallenges, PrivateInputs, PublicInputs, SetupParams, StackedBucketGraph, StackedDrg,
-        TemporaryAux, TemporaryAuxCache, BINARY_ARITY, EXP_DEGREE,
-    },
-    PoRep,
 };
 use tempfile::tempdir;
 

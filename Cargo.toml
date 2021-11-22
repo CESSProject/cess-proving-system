@@ -8,6 +8,6 @@ members = [
   "cess-fr32",
   "cess-sha2raw",
   "cess-sp-core",
-  "storage-proofs-porep",
+  "cess-sp-porep",
   "storage-proofs-post",
 ]
