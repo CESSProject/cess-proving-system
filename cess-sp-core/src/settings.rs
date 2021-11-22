@@ -48,7 +48,7 @@ impl Default for Settings {
             // `parameter_cache` does not use the cache() mechanism because it is now used
             // for durable, canonical Groth parameters and verifying keys.
             // The name is retained for backwards compatibility.
-            parameter_cache: "/var/tmp/cess-proof-parameters/".to_string(),
+            parameter_cache: "/var/tmp/cess-proofs-parameters/".to_string(),
             parent_cache: cache("cess-parents"),
             use_multicore_sdr: false,
             multicore_sdr_producers: 3,
