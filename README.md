@@ -6,14 +6,14 @@ The **CESS Proving Subsystem** is a fork of **Filecoin Proving Subsystem** (or F
 
 There are currently several different crates:
 
-- [**Storage Proofs (`storage-proofs`)**](./storage-proofs)
-  A library for constructing storage proofs – including non-circuit proofs, corresponding SNARK circuits, and a method of combining them.
-
 - [**CESS Storage Proofs Core (`cess-sp-core`)**](./cess-sp-core)
   A set of common primitives used throughout the other storage-proofs sub-crates, including crypto, merkle tree, hashing and gadget interfaces.
 
-- [**Storage Proofs PoRep (`storage-proofs-porep`)**](./storage-proofs-porep)
-  `storage-proofs-porep` is intended to serve as a reference implementation for _**Proof-of-Replication**_ (**PoRep**), while also performing the heavy lifting for `cess-proofs`.
+- [**CESS Storage Proofs PoRep (`cess-sp-porep`)**](./cess-sp-porep)
+  `cess-sp-porep` is intended to serve as a reference implementation for _**Proof-of-Replication**_ (**PoRep**), while also performing the heavy lifting for `cess-proofs`.
+
+- [**CESS Storage Proofs PoSt (`cess-sp-post`)**](./cess-sp-post)
+  `cess-sp-post` is intended to serve as a reference implementation for _**Proof-of-SpaceTime**_ (**PoSt**)
 
   Primary Components:
 
