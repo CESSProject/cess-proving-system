@@ -12,7 +12,7 @@ readme = "README.md"
 [dependencies]
 storage-proofs-core = { path = "../cess-sp-core", package="cess-sp-core", version = "^0.1.0", default-features = false}
 storage-proofs-porep = { path = "../cess-sp-porep", package="cess-sp-porep", version = "^0.1.0", default-features = false }
-storage-proofs-post = { path = "../storage-proofs-post", version = "^0.1.0", default-features = false }
+storage-proofs-post = { path = "../cess-sp-post", package="cess-sp-post", version = "^0.1.0", default-features = false }
 cess-proofs = { path = "../cess-proofs", default-features = false }
 cess-hashers = { path = "../cess-hashers", default-features = false, features = ["poseidon", "blake2s", "sha256"] }
 clap = "2"

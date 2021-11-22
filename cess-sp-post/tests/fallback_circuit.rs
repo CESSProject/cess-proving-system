@@ -4,6 +4,10 @@ use bellperson::{
 };
 use blstrs::Scalar as Fr;
 use cess_hashers::{poseidon::PoseidonHasher, Domain, HashFunction, Hasher};
+use cess_sp_post::fallback::{
+    self, FallbackPoSt, FallbackPoStCircuit, FallbackPoStCompound, PrivateSector, PublicSector,
+    Sector,
+};
 use ff::Field;
 use generic_array::typenum::{U0, U2, U4, U8};
 use rand::SeedableRng;
@@ -16,10 +20,6 @@ use storage_proofs_core::{
     proof::ProofScheme,
     util::NODE_SIZE,
     TEST_SEED,
-};
-use storage_proofs_post::fallback::{
-    self, FallbackPoSt, FallbackPoStCircuit, FallbackPoStCompound, PrivateSector, PublicSector,
-    Sector,
 };
 use tempfile::tempdir;
 

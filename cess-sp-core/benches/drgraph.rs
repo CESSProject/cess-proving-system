@@ -1,9 +1,9 @@
 use cess_hashers::poseidon::PoseidonHasher;
-use criterion::{black_box, criterion_group, criterion_main, Criterion};
-use storage_proofs_core::{
+use cess_sp_core::{
     api_version::ApiVersion,
     drgraph::{BucketGraph, Graph, BASE_DEGREE},
 };
+use criterion::{black_box, criterion_group, criterion_main, Criterion};
 
 #[allow(clippy::unit_arg)]
 fn drgraph(c: &mut Criterion) {

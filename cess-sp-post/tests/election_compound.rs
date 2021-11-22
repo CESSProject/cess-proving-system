@@ -5,6 +5,9 @@ use bellperson::{
     Circuit,
 };
 use cess_hashers::{poseidon::PoseidonHasher, Domain, HashFunction, Hasher};
+use cess_sp_post::election::{
+    generate_candidates, ElectionPoStCompound, PrivateInputs, PublicInputs, SetupParams,
+};
 use generic_array::typenum::{U0, U8};
 use rand::SeedableRng;
 use rand_xorshift::XorShiftRng;
@@ -15,9 +18,6 @@ use storage_proofs_core::{
     sector::SectorId,
     util::NODE_SIZE,
     TEST_SEED,
-};
-use storage_proofs_post::election::{
-    generate_candidates, ElectionPoStCompound, PrivateInputs, PublicInputs, SetupParams,
 };
 use tempfile::tempdir;
 

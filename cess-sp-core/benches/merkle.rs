@@ -2,9 +2,9 @@ use anyhow::Result;
 use cess_hashers::{
     poseidon::PoseidonDomain, poseidon::PoseidonHasher, sha256::Sha256Hasher, Domain,
 };
+use cess_sp_core::merkle::{create_base_merkle_tree, BinaryMerkleTree};
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
 use rand::{thread_rng, Rng};
-use storage_proofs_core::merkle::{create_base_merkle_tree, BinaryMerkleTree};
 
 fn merkle_benchmark_sha256(c: &mut Criterion) {
     let params = if cfg!(feature = "big-sector-sizes-bench") {

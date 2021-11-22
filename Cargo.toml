@@ -9,5 +9,5 @@ members = [
   "cess-sha2raw",
   "cess-sp-core",
   "cess-sp-porep",
-  "storage-proofs-post",
+  "cess-sp-post",
 ]

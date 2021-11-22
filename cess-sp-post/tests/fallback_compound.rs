@@ -3,6 +3,10 @@ use bellperson::{
     Circuit,
 };
 use cess_hashers::{poseidon::PoseidonHasher, Domain, HashFunction, Hasher};
+use cess_sp_post::fallback::{
+    ChallengeRequirements, FallbackPoStCompound, PrivateInputs, PrivateSector, PublicInputs,
+    PublicSector, SetupParams,
+};
 use generic_array::typenum::{U0, U2, U4, U8};
 use pretty_assertions::assert_eq;
 use rand::SeedableRng;
@@ -13,10 +17,6 @@ use storage_proofs_core::{
     merkle::{generate_tree, get_base_tree_count, LCTree, MerkleTreeTrait},
     util::NODE_SIZE,
     TEST_SEED,
-};
-use storage_proofs_post::fallback::{
-    ChallengeRequirements, FallbackPoStCompound, PrivateInputs, PrivateSector, PublicInputs,
-    PublicSector, SetupParams,
 };
 use tempfile::tempdir;
 

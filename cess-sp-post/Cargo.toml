@@ -1,9 +1,9 @@
 [package]
-name = "storage-proofs-post"
+name = "cess-sp-post"
 version = "0.1.0"
-authors = ["dignifiedquire <me@dignifiedquire.com>"]
+authors = []
 license = "MIT OR Apache-2.0"
-description = "Proofs of Space Time"
+description = "CESS Storage Proofs - Proofs of Space Time"
 edition = "2018"
 repository = "https://github.com/CESSProject/cess-proving-system"
 readme = "README.md"

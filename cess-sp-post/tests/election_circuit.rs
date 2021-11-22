@@ -4,6 +4,9 @@ use std::marker::PhantomData;
 use bellperson::{util_cs::test_cs::TestConstraintSystem, Circuit};
 use blstrs::Scalar as Fr;
 use cess_hashers::{poseidon::PoseidonHasher, Domain, HashFunction, Hasher};
+use cess_sp_post::election::{
+    self, generate_candidates, ElectionPoSt, ElectionPoStCircuit, ElectionPoStCompound,
+};
 use ff::Field;
 use generic_array::typenum::{U0, U8};
 use rand::SeedableRng;
@@ -15,9 +18,6 @@ use storage_proofs_core::{
     sector::SectorId,
     util::NODE_SIZE,
     TEST_SEED,
-};
-use storage_proofs_post::election::{
-    self, generate_candidates, ElectionPoSt, ElectionPoStCircuit, ElectionPoStCompound,
 };
 use tempfile::tempdir;
 

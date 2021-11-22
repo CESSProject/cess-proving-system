@@ -4,6 +4,7 @@ use cess_hashers::{
     blake2s::Blake2sHasher, poseidon::PoseidonHasher, sha256::Sha256Hasher, Domain, HashFunction,
     Hasher,
 };
+use cess_sp_post::rational::{self, derive_challenges, RationalPoSt};
 use generic_array::typenum::{U0, U2, U8};
 use rand::{Rng, SeedableRng};
 use rand_xorshift::XorShiftRng;
@@ -13,7 +14,6 @@ use storage_proofs_core::{
     sector::OrderedSectorSet,
     TEST_SEED,
 };
-use storage_proofs_post::rational::{self, derive_challenges, RationalPoSt};
 use tempfile::tempdir;
 
 #[test]

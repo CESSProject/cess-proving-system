@@ -2,6 +2,7 @@ use std::collections::BTreeMap;
 
 use bellperson::{util_cs::test_cs::TestConstraintSystem, Circuit};
 use cess_hashers::{poseidon::PoseidonHasher, Domain, HashFunction, Hasher};
+use cess_sp_post::rational::{self, derive_challenges, RationalPoStCompound};
 use rand::{Rng, SeedableRng};
 use rand_xorshift::XorShiftRng;
 use storage_proofs_core::{
@@ -12,7 +13,6 @@ use storage_proofs_core::{
     util::NODE_SIZE,
     TEST_SEED,
 };
-use storage_proofs_post::rational::{self, derive_challenges, RationalPoStCompound};
 use tempfile::tempdir;
 
 #[ignore]
