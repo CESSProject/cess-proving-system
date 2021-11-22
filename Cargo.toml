@@ -5,9 +5,9 @@ members = [
   "cess-proofs",
   "cess-proofs-param",
   "cess-proofs-tooling",
+  "cess-fr32",
   "storage-proofs-core",
   "storage-proofs-porep",
   "storage-proofs-post",
-  "fr32",
   "sha2raw",
 ]

@@ -1,5 +1,5 @@
 [package]
-name = "fr32"
+name = "cess-fr32"
 version = "0.1.0"
 authors = ["dignifiedquire <me@dignifiedquire.com>"]
 description = "Filecoin proofs Fr/32-byte conversion tooling"

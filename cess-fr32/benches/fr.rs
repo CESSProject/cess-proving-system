@@ -1,7 +1,7 @@
 use blstrs::Scalar as Fr;
+use cess_fr32::{bytes_into_fr, fr_into_bytes};
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
 use ff::Field;
-use fr32::{bytes_into_fr, fr_into_bytes};
 use rand::thread_rng;
 
 fn fr_benchmark(c: &mut Criterion) {
