@@ -1,5 +1,5 @@
 [package]
-name = "sha2raw"
+name = "cess-sha2raw"
 version = "0.1.0"
 authors = ["RustCrypto Developers", "Friedel Ziegelmayer <me@dignifiedquire.com>"]
 license = "MIT OR Apache-2.0"

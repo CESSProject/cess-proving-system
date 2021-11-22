@@ -54,7 +54,7 @@ criterion = "0.3"
 bitvec = "0.17"
 rand_xorshift = "0.3.0"
 pretty_assertions = "0.6.1"
-sha2raw = { path = "../sha2raw", version = "^0.1.0"}
+sha2raw = { path = "../cess-sha2raw", package="cess-sha2raw", version = "^0.1.0"}
 cess-hashers = { path = "../cess-hashers", version = "^0.1.0", default-features = false, features = ["blake2s", "sha256", "poseidon"] }
 
 [features]
