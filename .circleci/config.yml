@@ -381,7 +381,7 @@ workflows:
 
       - test_ignored_release:
           name: test_ignored_release_storage_proofs_core
-          crate: 'storage-proofs-core'
+          crate: 'cess-sp-core'
           requires:
             - cargo_fetch
             - ensure_groth_parameters_and_keys_linux
@@ -442,7 +442,7 @@ workflows:
 
       - test:
           name: test_storage_proofs_core
-          crate: 'storage-proofs-core'
+          crate: 'cess-sp-core'
           requires:
             - cargo_fetch
             - ensure_groth_parameters_and_keys_linux

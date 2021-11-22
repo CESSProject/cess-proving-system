@@ -1,4 +1,4 @@
-# Storage Proofs Core
+# CESS Storage Proofs Core
 
 ## License
 

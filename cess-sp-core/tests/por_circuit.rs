@@ -7,14 +7,7 @@ use blstrs::Scalar as Fr;
 use cess_hashers::{
     blake2s::Blake2sHasher, poseidon::PoseidonHasher, sha256::Sha256Hasher, Domain, Hasher,
 };
-use ff::Field;
-use fr32::{bytes_into_fr, fr_into_bytes};
-use generic_array::typenum::{Unsigned, U0, U2, U4, U8};
-use merkletree::store::VecStore;
-use pretty_assertions::assert_eq;
-use rand::{Rng, SeedableRng};
-use rand_xorshift::XorShiftRng;
-use storage_proofs_core::{
+use cess_sp_core::{
     compound_proof::CompoundProof,
     gadgets::por::{
         challenge_into_auth_path_bits, por_no_challenge_input, PoRCircuit, PoRCompound,
@@ -28,6 +21,13 @@ use storage_proofs_core::{
     util::data_at_node,
     TEST_SEED,
 };
+use ff::Field;
+use fr32::{bytes_into_fr, fr_into_bytes};
+use generic_array::typenum::{Unsigned, U0, U2, U4, U8};
+use merkletree::store::VecStore;
+use pretty_assertions::assert_eq;
+use rand::{Rng, SeedableRng};
+use rand_xorshift::XorShiftRng;
 
 type TreeBase<H, A> = MerkleTreeWrapper<H, VecStore<<H as Hasher>::Domain>, A, U0, U0>;
 type TreeSub<H, A, B> = MerkleTreeWrapper<H, VecStore<<H as Hasher>::Domain>, A, B, U0>;

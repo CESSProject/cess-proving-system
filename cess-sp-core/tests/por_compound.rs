@@ -4,14 +4,7 @@ use bellperson::{
 };
 use blstrs::Scalar as Fr;
 use cess_hashers::{poseidon::PoseidonHasher, Hasher};
-use ff::Field;
-use fr32::{bytes_into_fr, fr_into_bytes};
-use generic_array::typenum::{U0, U2, U4, U8};
-use merkletree::store::VecStore;
-use pretty_assertions::assert_eq;
-use rand::SeedableRng;
-use rand_xorshift::XorShiftRng;
-use storage_proofs_core::{
+use cess_sp_core::{
     compound_proof::{self, CompoundProof},
     gadgets::por::PoRCompound,
     merkle::{
@@ -23,6 +16,13 @@ use storage_proofs_core::{
     util::data_at_node,
     TEST_SEED,
 };
+use ff::Field;
+use fr32::{bytes_into_fr, fr_into_bytes};
+use generic_array::typenum::{U0, U2, U4, U8};
+use merkletree::store::VecStore;
+use pretty_assertions::assert_eq;
+use rand::SeedableRng;
+use rand_xorshift::XorShiftRng;
 
 type TreeBase<H, A> = MerkleTreeWrapper<H, VecStore<<H as Hasher>::Domain>, A, U0, U0>;
 type TreeSub<H, A, B> = MerkleTreeWrapper<H, VecStore<<H as Hasher>::Domain>, A, B, U0>;

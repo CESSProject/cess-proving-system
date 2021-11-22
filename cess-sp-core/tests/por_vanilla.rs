@@ -4,12 +4,7 @@ use blstrs::Scalar as Fr;
 use cess_hashers::{
     blake2s::Blake2sHasher, poseidon::PoseidonHasher, sha256::Sha256Hasher, Domain, Hasher,
 };
-use ff::Field;
-use fr32::fr_into_bytes;
-use generic_array::typenum::{U0, U2, U4};
-use rand::SeedableRng;
-use rand_xorshift::XorShiftRng;
-use storage_proofs_core::{
+use cess_sp_core::{
     api_version::ApiVersion,
     drgraph::{BucketGraph, Graph, BASE_DEGREE},
     merkle::{create_base_merkle_tree, DiskStore, MerkleTreeTrait, MerkleTreeWrapper},
@@ -18,6 +13,11 @@ use storage_proofs_core::{
     util::data_at_node,
     TEST_SEED,
 };
+use ff::Field;
+use fr32::fr_into_bytes;
+use generic_array::typenum::{U0, U2, U4};
+use rand::SeedableRng;
+use rand_xorshift::XorShiftRng;
 
 type TreeBase<H, U> = MerkleTreeWrapper<H, DiskStore<<H as Hasher>::Domain>, U, U0, U0>;
 

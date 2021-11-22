@@ -9,7 +9,7 @@ There are currently several different crates:
 - [**Storage Proofs (`storage-proofs`)**](./storage-proofs)
   A library for constructing storage proofs – including non-circuit proofs, corresponding SNARK circuits, and a method of combining them.
 
-- [**Storage Proofs Core (`storage-proofs-core`)**](./storage-proofs-core)
+- [**CESS Storage Proofs Core (`cess-sp-core`)**](./cess-sp-core)
   A set of common primitives used throughout the other storage-proofs sub-crates, including crypto, merkle tree, hashing and gadget interfaces.
 
 - [**Storage Proofs PoRep (`storage-proofs-porep`)**](./storage-proofs-porep)
