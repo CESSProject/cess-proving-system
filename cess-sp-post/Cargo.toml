@@ -1,6 +1,6 @@
 [package]
 name = "cess-sp-post"
-version = "0.1.0"
+version = "0.1.1"
 authors = []
 license = "MIT OR Apache-2.0"
 description = "CESS Storage Proofs - Proofs of Space Time"
@@ -9,7 +9,7 @@ repository = "https://github.com/CESSProject/cess-proving-system"
 readme = "README.md"
 
 [dependencies]
-storage-proofs-core = { path = "../cess-sp-core", package="cess-sp-core", version = "^0.1.0", default-features = false}
+storage-proofs-core = { path = "../cess-sp-core", package="cess-sp-core", version = "^0.1.1", default-features = false}
 cess-hashers = { path = "../cess-hashers", version = "^0.1.0", default-features = false, features = ["poseidon", "sha256"]}
 rand = "0.8"
 merkletree = "0.21.0"

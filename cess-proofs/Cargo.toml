@@ -1,7 +1,7 @@
 [package]
 name = "cess-proofs"
 description = "The CESS specific aspects of storage-proofs, including a C based FFI, to generate and verify proofs."
-version = "0.1.0"
+version = "0.1.1"
 authors = []
 license = "MIT OR Apache-2.0"
 edition = "2018"
@@ -9,9 +9,9 @@ repository = "https://github.com/CESSProject/cess-proving-system"
 readme = "README.md"
 
 [dependencies]
-storage-proofs-core = { path = "../cess-sp-core", package="cess-sp-core", version = "^0.1.0", default-features = false}
-storage-proofs-porep = { path = "../cess-sp-porep", package="cess-sp-porep", version = "^0.1.0", default-features = false }
-storage-proofs-post = { path = "../cess-sp-post", package="cess-sp-post", version = "^0.1.0", default-features = false }
+storage-proofs-core = { path = "../cess-sp-core", package="cess-sp-core", version = "^0.1.1", default-features = false}
+storage-proofs-porep = { path = "../cess-sp-porep", package="cess-sp-porep", version = "^0.1.1", default-features = false }
+storage-proofs-post = { path = "../cess-sp-post", package="cess-sp-post", version = "^0.1.1", default-features = false }
 cess-hashers = { version = "^0.1.0", path = "../cess-hashers", default-features = false, features = ["poseidon", "sha256"] }
 bitvec = "0.17"
 rand = "0.8"
