@@ -1,7 +1,7 @@
 # To use this configuration, copy this file to './cess-proving-system.config.toml'.
 
 # The location to store downloaded parameter files required for proofs.
-parameter_cache = "/var/tmp/cess-proofs-parameters/"
+parameter_cache = "/var/tmp/cess-proof-parameters/"
 
 # The location to store the on-disk parents cache.
 parent_cache = "/var/tmp/cess-parents"
