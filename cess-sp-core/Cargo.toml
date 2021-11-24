@@ -1,6 +1,6 @@
 [package]
 name = "cess-sp-core"
-version = "0.1.0"
+version = "0.1.1"
 authors = []
 description = "CESS Storage Proofs - Core parts for proofs of storage"
 license = "MIT OR Apache-2.0"
