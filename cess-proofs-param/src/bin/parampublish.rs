@@ -28,7 +28,7 @@ use structopt::StructOpt;
 lazy_static! {
     static ref CLI_ABOUT: String = format!(
         "Publish param files found in the cache directory specified by the env-var \
-        $FIL_PROOFS_PARAMETER_CACHE (or if the env-var is not set, the dir: {}) to ipfs",
+        $CESS_PROOFS_PARAMETER_CACHE (or if the env-var is not set, the dir: {}) to ipfs",
         parameter_cache_dir_name(),
     );
 }
@@ -162,7 +162,7 @@ pub fn main() {
 
     let cli = Cli::from_args();
 
-    let cache_dir = match env::var("FIL_PROOFS_PARAMETER_CACHE") {
+    let cache_dir = match env::var("CESS_PROOFS_PARAMETER_CACHE") {
         Ok(s) => s,
         _ => format!("{}", parameter_cache_dir().display()),
     };

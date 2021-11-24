@@ -132,7 +132,7 @@ struct Opt {
         long = "api-version",
         value_name = "SEMANTIC VERSION",
         default_value = "1.1.0",
-        help = "Use a specific rust-fil-proofs API version."
+        help = "Use a specific cess-proving-system API version."
     )]
     api_version: String,
 }

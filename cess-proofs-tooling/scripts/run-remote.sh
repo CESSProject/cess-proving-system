@@ -5,7 +5,7 @@ CMDS=$(
 
 set -e
 
-# Creates a temporary directory in which we build rust-fil-proofs and capture
+# Creates a temporary directory in which we build cess-proving-system and capture
 # performance metrics. The name of the directory (today's UTC seconds plus 24
 # hours) serves as a cleanup mechanism; before metrics are captured, any expired
 # directories are removed.

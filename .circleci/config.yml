@@ -22,7 +22,7 @@ executors:
     resource_class: arm.large
 
 setup-env: &setup-env
-  FIL_PROOFS_PARAMETER_CACHE: '/tmp/cess-proof-parameters/'
+  CESS_PROOFS_PARAMETER_CACHE: '/tmp/cess-proof-parameters/'
   RUST_LOG: info
 
 jobs:
@@ -141,7 +141,7 @@ jobs:
           no_output_timeout: 30m
           environment:
             RUST_TEST_THREADS: 1
-            FIL_PROOFS_USE_MULTICORE_SDR: true
+            CESS_PROOFS_USE_MULTICORE_SDR: true
 
   test_gpu_tree_building:
     executor: gpu
@@ -180,8 +180,8 @@ jobs:
             cargo +<< pipeline.parameters.nightly-toolchain >> test --all --verbose --release << parameters.cargo-args >> -- --nocapture << parameters.test-args >>
           no_output_timeout: 30m
           environment:
-            FIL_PROOFS_USE_GPU_COLUMN_BUILDER: true
-            FIL_PROOFS_USE_GPU_TREE_BUILDER: true
+            CESS_PROOFS_USE_GPU_COLUMN_BUILDER: true
+            CESS_PROOFS_USE_GPU_TREE_BUILDER: true
             BELLMAN_CUDA_NVCC_ARGS: --fatbin --gpu-architecture=sm_75 --generate-code=arch=compute_75,code=sm_75
             NEPTUNE_CUDA_NVCC_ARGS: --fatbin --gpu-architecture=sm_75 --generate-code=arch=compute_75,code=sm_75
 
@@ -321,7 +321,7 @@ commands:
           no_output_timeout: 60m
       - run:
           name: Make the parameters world readable
-          command: chmod -R 755 ${FIL_PROOFS_PARAMETER_CACHE}
+          command: chmod -R 755 ${CESS_PROOFS_PARAMETER_CACHE}
   save_rustup_cache:
     steps:
       # Move things from the home directory to `/tmp` first, so that it can be

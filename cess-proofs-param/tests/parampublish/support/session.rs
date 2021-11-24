@@ -131,7 +131,7 @@ impl ParamPublishSessionBuilder {
 
         let cmd = format!(
             "{}={} {:?} {} --ipfs-bin={:?} --json={:?}",
-            "FIL_PROOFS_PARAMETER_CACHE", // related to var name in core/src/settings.rs
+            "CESS_PROOFS_PARAMETER_CACHE", // related to var name in core/src/settings.rs
             cache_dir_path,
             parampublish_path,
             if self.list_all_files { "-a" } else { "" },

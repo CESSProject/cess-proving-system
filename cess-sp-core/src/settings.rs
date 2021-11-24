@@ -9,7 +9,7 @@ lazy_static! {
 }
 
 const SETTINGS_PATH: &str = "./cess-proving-system.config.toml";
-const PREFIX: &str = "FIL_PROOFS";
+const PREFIX: &str = "CESS_PROOFS";
 
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(default)]
@@ -59,8 +59,8 @@ impl Default for Settings {
 }
 
 /// All cache files and directories paths should be constructed using this function,
-/// which its base directory from the FIL_PROOFS_CACHE_DIR env var, and defaults to /var/tmp.
-/// Note that FIL_PROOFS_CACHE_DIR is not a first class setting and can only be set by env var.
+/// which its base directory from the CESS_PROOFS_CACHE_DIR env var, and defaults to /var/tmp.
+/// Note that CESS_PROOFS_CACHE_DIR is not a first class setting and can only be set by env var.
 fn cache(s: &str) -> String {
     let cache_var = format!("{}_CACHE_DIR", PREFIX);
     let mut cache_name = env::var(cache_var).unwrap_or_else(|_| "/var/tmp/".to_string());

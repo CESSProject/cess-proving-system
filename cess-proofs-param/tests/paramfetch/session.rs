@@ -87,7 +87,7 @@ impl ParamFetchSessionBuilder {
 
         let cmd = format!(
             "{}={} {:?} {} {} {}",
-            "FIL_PROOFS_PARAMETER_CACHE", // related to var name in core/src/settings.rs
+            "CESS_PROOFS_PARAMETER_CACHE", // related to var name in core/src/settings.rs
             cache_dir_path,
             paramfetch_path,
             if self.prompt_enabled { "" } else { "--all" },

@@ -1,9 +1,9 @@
 # How to build and run this Dockerfile:
 #
 # ```
-# RUST_FIL_PROOFS=`pwd` # path to `rust-fil-proofs`
+# CESS_PROVING_SYSTEM=`pwd` # path to `cess-proving-system`
 # docker --log-level debug build --progress tty --file Dockerfile-profile --tag rust-cpu-profile .
-# docker run -it -v $RUST_FIL_PROOFS:/code/ rust-cpu-profile
+# docker run -it -v $CESS_PROVING_SYSTEM:/code/ rust-cpu-profile
 # ```
 
 FROM rust
@@ -50,11 +50,11 @@ ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
 # `/usr/local/lib` by default but Debian/Ubuntu don't look there
 # now, the correct `--prefix` should be added to the command.
 
-# Install latest toolchain used by `rust-fil-proofs`
+# Install latest toolchain used by `cess-proving-system`
 # --------------------------------------------------
 
 RUN rustup default nightly-2019-07-15
-# FIXME: The lastest version used should be dynamically obtained form the `rust-fil-proofs` repo
+# FIXME: The lastest version used should be dynamically obtained form the `cess-proving-system` repo
 # and not hard-coded here.
 
 # Ready to run

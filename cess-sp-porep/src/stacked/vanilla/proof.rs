@@ -7,8 +7,8 @@ use std::sync::Mutex;
 
 use anyhow::Context;
 use bincode::deserialize;
-use fdlimit::raise_fd_limit;
 use cess_hashers::{poseidon::PoseidonHasher, Domain, HashFunction, Hasher, PoseidonArity};
+use fdlimit::raise_fd_limit;
 use generic_array::typenum::{Unsigned, U0, U11, U2, U8};
 use lazy_static::lazy_static;
 use log::{error, info, trace, warn};
@@ -509,8 +509,8 @@ impl<'a, Tree: 'static + MerkleTreeTrait, G: 'static + Hasher> StackedDrg<'a, Tr
             // into when persisting to disk.
             //
             // Override these values with care using environment variables:
-            // FIL_PROOFS_MAX_GPU_COLUMN_BATCH_SIZE, FIL_PROOFS_MAX_GPU_TREE_BATCH_SIZE, and
-            // FIL_PROOFS_COLUMN_WRITE_BATCH_SIZE respectively.
+            // CESS_PROOFS_MAX_GPU_COLUMN_BATCH_SIZE, CESS_PROOFS_MAX_GPU_TREE_BATCH_SIZE, and
+            // CESS_PROOFS_COLUMN_WRITE_BATCH_SIZE respectively.
             let max_gpu_column_batch_size = SETTINGS.max_gpu_column_batch_size as usize;
             let max_gpu_tree_batch_size = SETTINGS.max_gpu_tree_batch_size as usize;
             let column_write_batch_size = SETTINGS.column_write_batch_size as usize;
@@ -1239,7 +1239,7 @@ impl<'a, Tree: 'static + MerkleTreeTrait, G: 'static + Hasher> StackedDrg<'a, Tr
         );
 
         // A default 'rows_to_discard' value will be chosen for tree_r_last, unless the user overrides this value via the
-        // environment setting (FIL_PROOFS_ROWS_TO_DISCARD).  If this value is specified, no checking is done on it and it may
+        // environment setting (CESS_PROOFS_ROWS_TO_DISCARD).  If this value is specified, no checking is done on it and it may
         // result in a broken configuration.  Use with caution.  It must be noted that if/when this unchecked value is passed
         // through merkle_light, merkle_light now does a check that does not allow us to discard more rows than is possible
         // to discard.
