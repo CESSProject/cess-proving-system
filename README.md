@@ -376,7 +376,7 @@ The above referenced repository contains the consumer facing API and it provides
 
 To generate the API documentation locally, follow the instructions to generate documentation above. Then navigate to:
 
-- **CESS Proving System API:** `…/rust-filecoin-proofs-api/target/doc/cess_proofs_api/index.html`
+- **CESS Proving System API:** `…/cess-proving-system-api/target/doc/cess_proofs_api/index.html`
 
 - [Go implementation of cess-proofs sectorbuilder API taken from filecoin-proofs](https://github.com/filecoin-project/go-sectorbuilder/blob/master/sectorbuilder.go) and [associated interface structures](https://github.com/filecoin-project/go-sectorbuilder/blob/master/interface.go).
 
