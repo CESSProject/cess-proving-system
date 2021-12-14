@@ -2,7 +2,7 @@
 
 > Forked from [**Filecoin rust-fil-proofs**](https://github.com/filecoin-project/rust-fil-proofs)
 
-The **CESS Proving Subsystem** is a fork of **Filecoin Proving Subsystem** (or FPS) provides the storage proofs required by the CESS protocol and has some major improvements over the Filecoin Protocol. It is implemented entirely in Rust, as a series of partially inter-dependent crates – some of which export C bindings to the supported API.
+The **CESS Proving Subsystem** is a fork of **Filecoin Proving Subsystem** (or FPS) provides the storage proofs required by the CESS protocol and has some major improvements over the Filecoin Protocol. It is implemented entirely in Rust, as a series of partially inter-dependent crates – some of which export C bindings to the supported API. We have taken this library since it has been well tested and undergone various security proofs audit by Stigma Prime.
 
 There are currently several different crates:
 
@@ -33,9 +33,9 @@ There are currently several different crates:
 
 ## Security Audits
 
-The `cess-proving-system` proofs code and the [Filecoin Spec](https://bafybeidxw5vxjdwsun2zc2illagf43v6w5r5w63vg455h7vjesbyqssg64.ipfs.dweb.link/algorithms/sdr/) has undergone a [proofs security audit](audits/Sigma-Prime-Protocol-Labs-Filecoin-Proofs-Security-Review-v2.1.pdf) performed by [Sigma Prime](https://sigmaprime.io/) and been deemed free of _critical_ or _major_ security issues. In addition to the security review, the document provides the summary of findings, vulnerability classifications, and recommended resolutions. All known issues have been resolved to date in both the code and the specification.
+The `rust-fil-proofs` proofs code and the [Filecoin Spec](https://bafybeidxw5vxjdwsun2zc2illagf43v6w5r5w63vg455h7vjesbyqssg64.ipfs.dweb.link/algorithms/sdr/) has undergone a [proofs security audit](audits/Sigma-Prime-Protocol-Labs-Filecoin-Proofs-Security-Review-v2.1.pdf) performed by [Sigma Prime](https://sigmaprime.io/) and been deemed free of _critical_ or _major_ security issues. In addition to the security review, the document provides the summary of findings, vulnerability classifications, and recommended resolutions. All known issues have been resolved to date in both the code and the specification.
 
-`cess-proving-system` has also undergone a [SNARK proofs security audit performed by Dr. Jean-Philippe Aumasson and Antony Vennard](audits/protocolai-audit-20200728.pdf) and been deemed free of _critical_ or _major_ security issues. In addition to the security analysis, the document provides the audit goals, methodology, functionality descriptions and finally observations on what could be improved. All known issues have been resolved to date.
+`rust-fil-proofs` has also undergone a [SNARK proofs security audit performed by Dr. Jean-Philippe Aumasson and Antony Vennard](audits/protocolai-audit-20200728.pdf) and been deemed free of _critical_ or _major_ security issues. In addition to the security analysis, the document provides the audit goals, methodology, functionality descriptions and finally observations on what could be improved. All known issues have been resolved to date.
 
 ## Design Notes
 
@@ -46,8 +46,6 @@ We also considered whether the **FPS** should be implemented as a standalone bin
 If at any point it were to become clear that the FFI approach is irredeemably problematic, the option of moving to a standalone **FPS** remains. However, the majority of technical problems associated with calling from Go into Rust are now solved, even while allowing for a high degree of runtime configurability. Therefore, continuing down the same path we have already invested in, and have begun to reap rewards from, seems likely.
 
 ## Install and configure Rust
-
-**NOTE:** If you have installed `cess-proving-system` incidentally, as a submodule of `lotus`, then you may already have installed Rust.
 
 The instructions below assume you have independently installed `cess-proving-system` in order to test, develop, or experiment with it.
 
@@ -89,11 +87,11 @@ In order to build for arm64 the current requirements are
 
 - nightly rust compiler
 
-Example for building `filecoin-proofs`
+Example for building `cess-proofs`
 
 ```
 $ rustup +nightly target add aarch64-unknown-linux-gnu
-$ cargo +nightly build -p filecoin-proofs --release --target aarch64-unknown-linux-gnu
+$ cargo +nightly build -p cess-proofs --release --target aarch64-unknown-linux-gnu
 ```
 
 ## Test
@@ -174,7 +172,7 @@ fn main() {
 and then when running the code setting
 
 ```sh
-> RUST_LOG=filecoin_proofs=info
+> RUST_LOG=cess_proofs=info
 ```
 
 will enable all logging.
@@ -229,15 +227,15 @@ This value is defaulted to 2048 nodes, which is the equivalent of 112KiB of resi
 
 Increasing this value will increase the amount of resident RAM used.
 
-Lastly, the parent's cache data is located on disk by default in `/var/tmp/filecoin-parents`. To modify this location, use the environment variable
+Lastly, the parent's cache data is located on disk by default in `/var/tmp/cess-parents`. To modify this location, use the environment variable
 
 ```
 CESS_PROOFS_PARENT_CACHE=/path/to/parent/cache
 ```
 
-Using the above, the cache data would be located at `/path/to/parent/cache/filecoin-parents`.
+Using the above, the cache data would be located at `/path/to/parent/cache/cess-parents`.
 
-Alternatively, use `CESS_PROOFS_CACHE_DIR=/path/to/parent/cache`, in which the parent cache will be located in `$CESS_PROOFS_CACHE_DIR/filecoin-parents`. Note that if you're using `CESS_PROOFS_CACHE_DIR`, it must be set through the environment and cannot be set using the configuration file. This setting has no effect if `CESS_PROOFS_PARENT_CACHE` is also specified.
+Alternatively, use `CESS_PROOFS_CACHE_DIR=/path/to/parent/cache`, in which the parent cache will be located in `$CESS_PROOFS_CACHE_DIR/cess-parents`. Note that if you're using `CESS_PROOFS_CACHE_DIR`, it must be set through the environment and cannot be set using the configuration file. This setting has no effect if `CESS_PROOFS_PARENT_CACHE` is also specified.
 
 If you are concerned about the integrity of your on-disk parent cache files, they can be verified at runtime when accessed for the first time using an environment variable
 
@@ -370,19 +368,17 @@ View the docs by pointing your browser at: `…/cess-proving-system/target/doc/p
 
 ## API Reference
 
-The **FPS** is accessed from [**lotus**](https://github.com/filecoin-project/lotus) via FFI calls to its API, which is the union of the APIs of its constituents:
+The source of truth defining the CESS-Backend Pinning Service (**CPF**) APIs is a separate repository of Rust source code. View the source directly:
 
-The source of truth defining the **FPS** APIs is a separate repository of Rust source code. View the source directly:
-
-- [**filecoin-proofs-api**](https://github.com/filecoin-project/rust-filecoin-proofs-api)
+- [**cess-proving-system-api**](https://github.com/CESSProject/cess-proving-system-api)
 
 The above referenced repository contains the consumer facing API and it provides a versioned wrapper around the `cess-proving-system` repository's internal APIs. End users should not be using the internal APIs of `cess-proving-system` directly, as they are subject to change outside of the formal API provided.
 
 To generate the API documentation locally, follow the instructions to generate documentation above. Then navigate to:
 
-- **Filecoin Proofs API:** `…/rust-filecoin-proofs-api/target/doc/filecoin_proofs_api/index.html`
+- **CESS Proving System API:** `…/rust-filecoin-proofs-api/target/doc/cess_proofs_api/index.html`
 
-- [Go implementation of filecoin-proofs sectorbuilder API](https://github.com/filecoin-project/go-sectorbuilder/blob/master/sectorbuilder.go) and [associated interface structures](https://github.com/filecoin-project/go-sectorbuilder/blob/master/interface.go).
+- [Go implementation of cess-proofs sectorbuilder API taken from filecoin-proofs](https://github.com/filecoin-project/go-sectorbuilder/blob/master/sectorbuilder.go) and [associated interface structures](https://github.com/filecoin-project/go-sectorbuilder/blob/master/interface.go).
 
 ## Contributing
 
