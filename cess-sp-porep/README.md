@@ -84,6 +84,11 @@ for (i, proof) in proofs.into_iter().enumerate() {
 ```
 These small circuit of each challenge node is represented by `Proof` structure defined in [params.rs](./src/stacked/circuit/params.rs#L41).
 
+### Labeling Proof Circuit
+TODO:
+### Encoding Proof Circuit
+TODO:
+
 
 ## License
 
