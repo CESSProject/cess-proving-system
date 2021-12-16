@@ -2,15 +2,15 @@
 
 The `cess-sp-porep` is the reference implementation of _**Proof-of-Replication**_ (**PoRep**) and performs all the heavy lifting for `cess-proofs`.
 
-_**Proof-of-Replication**_ proves that a Storage Miner is dedicating unique storage for each sector. The miners collect new client's data in a sector, run a slow encoding process (called `Seal`) and generate a proof (`SealProof`) that the encoding was generatd correctly.
+_**Proof-of-Replication**_ proves that a Storage Miner is dedicating unique storage for each sector. The miners collect new client's data in a sector, run a slow encoding process (called `Seal`) and generate proof (`SealProof`) that the encoding was generated correctly.
 
 PoRep provides two guarantees:
-1. Space-hardness: Storage Miners cannot lie about tha amount of space they are dedicating to CESS Network in order to gain more power.
-2. Replication: Storage Miners are dedicating unique storage for each copy of teir clients data. 
+1. Space-hardness: Storage Miners cannot lie about the amount of space they are dedicating to CESS Network to gain more power.
+2. Replication: Storage Miners are dedicating unique storage for each copy of their client's data. 
 
 The _**Proof-of-Replication**_ uses Stacked DRG (SDR) designed by [**Ben Fisch at EUROCRYPT19**](https://eprint.iacr.org/2018/702.pdf). SDR uses Depth Robust Graph to ensure the sector has been encoded with a slow and non-parallelizable sequential process.
 
-The proof size in SRD is too large to store it in blockchain this is mostly due to large amount of Merkle tree proofs required to achieve security. SDR verification algorithm is build using arithemetic circuit and uses SNARKs to prove that SDR proof was evaluated correctly.
+The proof size in SRD is too large to store it in blockchain this is mostly due to the large amount of Merkle tree proofs required to achieve security. SDR verification algorithm is built using an arithmetic circuit and uses SNARKs to prove that SDR proof was evaluated correctly.
 
 ## PoRep Circuit
 
@@ -42,6 +42,47 @@ This includes
 - comm_c: Root of the octree of column hash result
 - proofs: Challenge the corresponding proof circuit
 
+The construction of the entire circuit begins with the StackedCircuit `synthesize` interface function.
+```rust
+impl<'a, Tree: MerkleTreeTrait, G: Hasher> Circuit<Fr> for StackedCircuit<'a, Tree, G> {
+    fn synthesize<CS: ConstraintSystem<Fr>>(self, cs: &mut CS) -> Result<(), SynthesisError> {
+        let StackedCircuit {
+            public_params,
+            proofs,
+            replica_id,
+            comm_r,
+            comm_d,
+            comm_r_last,
+            comm_c,
+            ..
+        } = self;
+        //... // function body.
+        Ok(())
+    }
+}
+
+```
+This function divides the circuit into two parts:
+- Tree root check circuit
+- Challenge node information proof circuit
+
+The `Tree root check circuit` is fairly simple and is used for verifying comm_r is calculated currectly using comm_c and comm_r_last.
+On the other hand `Challenge node proof circuit` generates challenge node proof circuit based on the size of the sector. For a `32GiB` sector `176` challenges are generated. Also called as 176 small circuits. 
+
+```rust
+for (i, proof) in proofs.into_iter().enumerate() {
+    proof.synthesize(
+        &mut cs.namespace(|| format!("challenge_{}", i)),
+        public_params.layer_challenges.layers(),
+        &comm_d_num,
+        &comm_c_num,
+        &comm_r_last_num,
+        &replica_id_bits,
+    )?;
+}
+
+```
+These small circuit of each challenge node is represented by `Proof` structure defined in [params.rs](./src/stacked/circuit/params.rs#L41).
 
 
 ## License
