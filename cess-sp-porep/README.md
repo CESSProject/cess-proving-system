@@ -5,8 +5,9 @@ The `cess-sp-porep` is the reference implementation of _**Proof-of-Replication**
 _**Proof-of-Replication**_ proves that a Storage Miner is dedicating unique storage for each sector. The miners collect new client's data in a sector, run a slow encoding process (called `Seal`) and generate proof (`SealProof`) that the encoding was generated correctly.
 
 PoRep provides two guarantees:
+
 1. Space-hardness: Storage Miners cannot lie about the amount of space they are dedicating to CESS Network to gain more power.
-2. Replication: Storage Miners are dedicating unique storage for each copy of their client's data. 
+2. Replication: Storage Miners are dedicating unique storage for each copy of their client's data.
 
 The _**Proof-of-Replication**_ uses Stacked DRG (SDR) designed by [**Ben Fisch at EUROCRYPT19**](https://eprint.iacr.org/2018/702.pdf). SDR uses Depth Robust Graph to ensure the sector has been encoded with a slow and non-parallelizable sequential process.
 
@@ -14,11 +15,14 @@ The proof size in SRD is too large to store it in blockchain this is mostly due 
 
 ## PoRep Circuit
 
-### Overview of entire PoRep Circuit 
+### Overview of entire PoRep Circuit
+
 ![1_8ngv4D_fB5WzauWAY3b2fA](https://user-images.githubusercontent.com/15224865/146317251-22961983-8b0f-49d9-8974-6c4a8de15995.png)
 
 ### StackedCircuit
+
 StackedCircuit is the over all circuit of PoRep, defined in [proof.rs](./src/stacked/circuit/proof.rs#L28)
+
 ```rust
 pub struct StackedCircuit<'a, Tree: 'static + MerkleTreeTrait, G: 'static + Hasher> {
     public_params: <StackedDrg<'a, Tree, G> as ProofScheme<'a>>::PublicParams,
@@ -34,6 +38,7 @@ pub struct StackedCircuit<'a, Tree: 'static + MerkleTreeTrait, G: 'static + Hash
 ```
 
 This includes
+
 - public_params: StackedDrg (deep robust graph) related parameters, including the parameters of the graph itself and the number of challenges.
 - replica_id: Sector copy id
 - comm_d: the root of the binary tree of the original data
@@ -43,6 +48,7 @@ This includes
 - proofs: Challenge the corresponding proof circuit
 
 The construction of the entire circuit begins with the StackedCircuit `synthesize` interface function.
+
 ```rust
 impl<'a, Tree: MerkleTreeTrait, G: Hasher> Circuit<Fr> for StackedCircuit<'a, Tree, G> {
     fn synthesize<CS: ConstraintSystem<Fr>>(self, cs: &mut CS) -> Result<(), SynthesisError> {
@@ -62,12 +68,14 @@ impl<'a, Tree: MerkleTreeTrait, G: Hasher> Circuit<Fr> for StackedCircuit<'a, Tr
 }
 
 ```
+
 This function divides the circuit into two parts:
+
 - Tree root check circuit
 - Challenge node information proof circuit
 
 The `Tree root check circuit` is fairly simple and is used for verifying comm_r is calculated currectly using comm_c and comm_r_last.
-On the other hand `Challenge node proof circuit` generates challenge node proof circuit based on the size of the sector. For a `32GiB` sector `176` challenges are generated. Also called as 176 small circuits. 
+On the other hand `Challenge node proof circuit` generates challenge node proof circuit based on the size of the sector. For a `32GiB` sector `176` challenges are generated. Also called as 176 small circuits.
 
 ```rust
 for (i, proof) in proofs.into_iter().enumerate() {
@@ -82,13 +90,30 @@ for (i, proof) in proofs.into_iter().enumerate() {
 }
 
 ```
+
 These small circuit of each challenge node is represented by `Proof` structure defined in [params.rs](./src/stacked/circuit/params.rs#L41).
 
 ### Labeling Proof Circuit
-TODO:
-### Encoding Proof Circuit
+
 TODO:
 
+The following code is used to verify all the labels generated on previous step. This function just checks for quality by comparing `labeling_proof` with `label_node`
+
+```rust
+/// Verify all labels.
+fn verify_labels(
+    &self,
+    replica_id: &<Tree::Hasher as Hasher>::Domain,
+    layer_challenges: &LayerChallenges,
+) -> bool {
+    // Verify Labels Layer 1..layers
+    ...
+}
+```
+
+### Encoding Proof Circuit
+
+TODO:
 
 ## License
 
