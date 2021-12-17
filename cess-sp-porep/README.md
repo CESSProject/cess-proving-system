@@ -182,6 +182,12 @@ A Merkle tree `TreeD: BinTree` is constructed for sector `D` whose leaves are th
 
 The function [derive_internal](./src/stacked/vanilla/challenges.rs#L39) creates the PoRep challenge set for a replica `R`'s partition-`k` PoRep partition proof.
 
+## Bellman
+
+_"zk-SNARKs are a cryptographic technique that allows a prover to efficiently convince verifiers that the prover knows some piece of information without revealing the information itself."_ by [Filecoin](https://filecoin.io/blog/posts/filecoin-zk-snarks-zero-knowledge-but-a-lot-of-zero-knowledge/). The main benifit of using zk-SNARKs is that it allow us to prove the validity of storage in much less.
+
+The `cess-proving-system` uses the "**Bellman's zk-SNKARs**" implementation, mainly based on **BLS12-381** elliptic curve and realizes **Groth16**'s zero-knowledge proof system. This library is used to verify whether the zero-knowledge proof is correct and the verification process takes around several milliseconds making it relatively fast.
+
 ## License
 
 MIT or Apache 2.0
