@@ -11,7 +11,7 @@ PoRep provides two guarantees:
 
 The _**Proof-of-Replication**_ uses Stacked DRG (SDR) designed by [**Ben Fisch at EUROCRYPT19**](https://eprint.iacr.org/2018/702.pdf). SDR uses Depth Robust Graph to ensure the sector has been encoded with a slow and non-parallelizable sequential process.
 
-The proof size in SRD is too large to store it in blockchain this is mostly due to the large amount of Merkle tree proofs required to achieve security. SDR verification algorithm is built using an arithmetic circuit and uses SNARKs to prove that SDR proof was evaluated correctly.
+The proof size in SDR is too large to store it in blockchain this is mostly due to the large amount of Merkle tree proofs required to achieve security. SDR verification algorithm is built using an arithmetic circuit and uses SNARKs to prove that SDR proof was evaluated correctly.
 
 ## PoRep Circuit
 
@@ -22,6 +22,7 @@ The proof size in SRD is too large to store it in blockchain this is mostly due 
 ### StackedCircuit
 
 StackedCircuit is the over all circuit of PoRep, defined in [proof.rs](./src/stacked/circuit/proof.rs#L28)
+Credits to [Star LI](https://starli.medium.com/filecoin-porep-circuit-introduction-43415d97730c)
 
 ```rust
 pub struct StackedCircuit<'a, Tree: 'static + MerkleTreeTrait, G: 'static + Hasher> {
@@ -93,9 +94,14 @@ for (i, proof) in proofs.into_iter().enumerate() {
 
 These small circuit of each challenge node is represented by `Proof` structure defined in [params.rs](./src/stacked/circuit/params.rs#L41).
 
-### Labeling Proof Circuit
+### Labeling
+
+**Labeling a Node**
+The labeling function for every node in a Stacked-DRG is `Sha254` producing a 254-bit field element. A unique preimage is derived for each node-layer tuple in replicas' Stacked-DRG.
 
 The proof circuit for Labeling calculation is to prove that a certain node is calculated correctly according to the SDR algorithm.
+
+`generate_labels` function describes how every Stacked-DRG node is labeled for a replica. Nodes in the first layer are labeled using only DRG parents' labels, nodes in every subsequent layers are labeled using both their DRG and expander parents' labels. The first node in every layer is **not** labeled using parents.
 
 The `LabelingProof` object can be created by calling the below function
 
@@ -129,9 +135,52 @@ fn verify_labels(
 }
 ```
 
-### Encoding Proof Circuit
+### Encoding
 
-TODO:
+Encoding is the process by which a sector is transformed into its encoding replica. The encoding function is node-wise prime field addition, where "**node-wise**" means that every distinct slice of the sector is discretely encoded. Each distinct slice belonging to a sector is interpreted as a field element and encoded into Replica by adding its key to the slice.
+
+The function `encode` is used to encode a sector (D) into replica (R) given an encoding key (K) derived from R's `ReplicaId`
+
+```rust
+pub fn encode<T: Domain>(key: T, value: T) -> T {
+    let mut result: Fr = value.into();
+    let key: Fr = key.into();
+
+    result += key;
+    result.into()
+}
+```
+
+### Replication
+
+Replication is the entire process by which a sector `D` is uniquely encoded into a replica `R`. Replication encompasses Stacked-DRG labeling, encoding `D` into `R`, and the generation of trees `TreeC` over `Labels` and `TreeR` over `R`.
+
+A miner derives a unique `ReplicaID` for each `R` using the commitment to the replica's sector `CommD = TreeD.root` (where `TreeD` is build over the nodes of the encoded sector `D` associated with `R`).
+
+Given a sector `D` and its commitment `CommD`, replication proceeds as follows:
+
+Generate the `R`’s unique `ReplicaID`.
+Generate `Labels` from `ReplicaID`, thus deriving the key `K` that encodes `D` into `R`.
+Generate `TreeC` over the columns of `Labels` via the column commitment process.
+Encode `D` into `R` using the encoding key `K`.
+Generate a `TreeR: OctTree` over the replica `R`.
+Commit to `R` and its associated labeling `Labels` via the commitment `CommCR`.
+
+The function [`replicate`](./src/drg/vanilla.rs#L440) runs the entire replication process for a sector `D`.
+
+### ReplicaID Generation
+
+The function [generate_replica_id](./src/stacked/vanilla/params.rs#L759) describes how a miner having the `ProverID` is able to generate a `ReplicaID` for a replica `R` of sector `D`, where `D` has a unique `sectorID` and commitment `CommD`. The prover uses a unique random value _`R`_ for each `ReplicaID` generated.
+
+### Sector Construction
+
+A sector `D` is constructed from CESS client data where the aggregating of client data of has been preprocessed/bit-padded such that two zero bits are placed between each distinct 254-bit slice of client data. This padding process results in a sector `D` such that every 256-bit slice represents a valid 254-bit field element.
+
+A Merkle tree `TreeD: BinTree` is constructed for sector `D` whose leaves are the 256-bit slices Di. Each `TreeD` is constructed over the preprocessed sector data `D`
+
+### PoRep Challenges
+
+The function [derive_internal](./src/stacked/vanilla/challenges.rs#L39) creates the PoRep challenge set for a replica `R`'s partition-`k` PoRep partition proof.
 
 ## License
 
