@@ -95,7 +95,25 @@ These small circuit of each challenge node is represented by `Proof` structure d
 
 ### Labeling Proof Circuit
 
-TODO:
+The proof circuit for Labeling calculation is to prove that a certain node is calculated correctly according to the SDR algorithm.
+
+The `LabelingProof` object can be created by calling the below function
+
+```rust
+impl<H: Hasher> LabelingProof<H> {
+    pub fn new(layer_index: u32, node: u64, parents: Vec<H::Domain>) -> Self {
+        LabelingProof {
+            node,
+            layer_index,
+            parents,
+            _h: PhantomData,
+        }
+    }
+    ...
+}
+```
+
+The [create_label](./src/stacked/vanilla/labeling_proof.rs#L28) function computes sha256 of `replica_id`, `layer_index` and the `node id` concatinated in a buffer and hash of the parents itself.
 
 The following code is used to verify all the labels generated on previous step. This function just checks for quality by comparing `labeling_proof` with `label_node`
 
