@@ -18,11 +18,11 @@ The proof size in SDR is too large to store it in blockchain this is mostly due 
 ### Overview of entire PoRep Circuit
 
 ![1_8ngv4D_fB5WzauWAY3b2fA](https://user-images.githubusercontent.com/15224865/146317251-22961983-8b0f-49d9-8974-6c4a8de15995.png)
+Credits to [Star LI](https://starli.medium.com/filecoin-porep-circuit-introduction-43415d97730c)
 
 ### StackedCircuit
 
 StackedCircuit is the over all circuit of PoRep, defined in [proof.rs](./src/stacked/circuit/proof.rs#L28)
-Credits to [Star LI](https://starli.medium.com/filecoin-porep-circuit-introduction-43415d97730c)
 
 ```rust
 pub struct StackedCircuit<'a, Tree: 'static + MerkleTreeTrait, G: 'static + Hasher> {
