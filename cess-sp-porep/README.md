@@ -186,7 +186,7 @@ The function [derive_internal](./src/stacked/vanilla/challenges.rs#L39) creates 
 
 _"zk-SNARKs are a cryptographic technique allowing a prover to efficiently convince verifiers that the prover knows something — but without revealing the information itself. zk-SNARKs allow for secure, private interaction with unknown and untrusted parties in a blockchain setting due to their (knowledge) soundness property: a valid proof cannot be created without knowledge of the correct statment, even if they are kept private."_ by [Filecoin](https://research.protocol.ai/sites/snarks/). The main benifit of using zk-SNARKs is that it allow us to prove the validity of storage in much less space.
 
-The `cess-proving-system` uses the "**Bellman's zk-SNKARs**" implementation, mainly based on **BLS12-381** elliptic curve and realizes **Groth16**'s zero-knowledge proof system. This library is used to verify whether the zero-knowledge proof is correct and the verification process takes around several milliseconds making it relatively fast.
+The `cess-proving-system` uses the "**Bellman's zk-SNARs**" implementation, mainly based on **BLS12-381** elliptic curve and realizes **Groth16**'s zero-knowledge proof system. This library is used to verify whether the zero-knowledge proof is correct and the verification process takes around several milliseconds making it relatively fast.
 
 ## License
 
