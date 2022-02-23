@@ -1,7 +1,7 @@
 [package]
 name = "cess-proofs-tooling"
 description = "Tooling for cess-proving-system"
-version = "0.1.1"
+version = "0.1.2"
 authors = []
 license = "MIT OR Apache-2.0"
 publish = false
@@ -10,9 +10,9 @@ repository = "https://github.com/CESSProject/cess-proving-system"
 readme = "README.md"
 
 [dependencies]
-storage-proofs-core = { path = "../cess-sp-core", package="cess-sp-core", version = "^0.1.1", default-features = false}
-storage-proofs-porep = { path = "../cess-sp-porep", package="cess-sp-porep", version = "^0.1.1", default-features = false }
-storage-proofs-post = { path = "../cess-sp-post", package="cess-sp-post", version = "^0.1.1", default-features = false }
+storage-proofs-core = { path = "../cess-sp-core", package="cess-sp-core", version = "^0.1.2", default-features = false}
+storage-proofs-porep = { path = "../cess-sp-porep", package="cess-sp-porep", version = "^0.1.2", default-features = false }
+storage-proofs-post = { path = "../cess-sp-post", package="cess-sp-post", version = "^0.1.2", default-features = false }
 cess-proofs = { path = "../cess-proofs", default-features = false }
 cess-hashers = { path = "../cess-hashers", default-features = false, features = ["poseidon", "blake2s", "sha256"] }
 clap = "2"
