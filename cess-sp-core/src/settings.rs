@@ -48,7 +48,7 @@ impl Default for Settings {
             // `parameter_cache` does not use the cache() mechanism because it is now used
             // for durable, canonical Groth parameters and verifying keys.
             // The name is retained for backwards compatibility.
-            parameter_cache: "/var/tmp/cess-proof-parameters/".to_string(),
+            parameter_cache: "/usr/local/cess-proof-parameters/".to_string(),
             parent_cache: cache("cess-parents"),
             use_multicore_sdr: false,
             multicore_sdr_producers: 3,
@@ -59,11 +59,11 @@ impl Default for Settings {
 }
 
 /// All cache files and directories paths should be constructed using this function,
-/// which its base directory from the CESS_PROOFS_CACHE_DIR env var, and defaults to /var/tmp.
+/// which its base directory from the CESS_PROOFS_CACHE_DIR env var, and defaults to /usr/local.
 /// Note that CESS_PROOFS_CACHE_DIR is not a first class setting and can only be set by env var.
 fn cache(s: &str) -> String {
     let cache_var = format!("{}_CACHE_DIR", PREFIX);
-    let mut cache_name = env::var(cache_var).unwrap_or_else(|_| "/var/tmp/".to_string());
+    let mut cache_name = env::var(cache_var).unwrap_or_else(|_| "/usr/local/".to_string());
     cache_name.push_str(s);
     cache_name
 }

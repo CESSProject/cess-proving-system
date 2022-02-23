@@ -26,7 +26,7 @@ set -Eeuo pipefail
 #   CLUSTER_TOKEN="user:pass" DNSIMPLE_TOKEN="xyz" ./pin-params.sh
 #
 
-INPUT_DIR=${1:-"/var/tmp/cess-proof-parameters"}
+INPUT_DIR=${1:-"/usr/local/cess-proof-parameters"}
 : "${CLUSTER_TOKEN:?please set CLUSTER_TOKEN env var}"
 : "${DNSIMPLE_TOKEN:?please set DNSIMPLE_TOKEN env var}"
 

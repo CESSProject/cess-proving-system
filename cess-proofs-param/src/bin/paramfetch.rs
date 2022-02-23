@@ -36,7 +36,7 @@ const DEFAULT_IPGET_VERSION: &str = "v0.6.0";
 
 #[inline]
 fn get_ipget_dir(version: &str) -> String {
-    format!("/var/tmp/ipget-{}", version)
+    format!("/usr/local/ipget-{}", version)
 }
 
 #[inline]
@@ -256,7 +256,7 @@ struct Cli {
         value_name = "PATH TO IPGET",
         conflicts_with = "ipget-version",
         long_help = "Path to an ipget binary. If this argument is not given, paramfetch with look \
-            for ipget in the default location: /var/tmp/ipget-<version>/ipget/ipget. If no binary \
+            for ipget in the default location: /usr/local/ipget-<version>/ipget/ipget. If no binary \
             is found in the default location, paramfetch will download ipget into that location."
     )]
     ipget_bin: Option<String>,

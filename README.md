@@ -197,7 +197,7 @@ cargo run --bin settings
 
 ## Parameter File Location
 
-CESS proof parameter files are expected to be located in `/var/tmp/cess-proof-parameters`. If they are located in an alternate location, you can point the system to that location using an environment variable
+CESS proof parameter files are expected to be located in `/usr/local/cess-proof-parameters`. If they are located in an alternate location, you can point the system to that location using an environment variable
 
 ```
 CESS_PROOFS_PARAMETER_CACHE=/path/to/parameters
@@ -227,7 +227,7 @@ This value is defaulted to 2048 nodes, which is the equivalent of 112KiB of resi
 
 Increasing this value will increase the amount of resident RAM used.
 
-Lastly, the parent's cache data is located on disk by default in `/var/tmp/cess-parents`. To modify this location, use the environment variable
+Lastly, the parent's cache data is located on disk by default in `/usr/local/cess-parents`. To modify this location, use the environment variable
 
 ```
 CESS_PROOFS_PARENT_CACHE=/path/to/parent/cache
